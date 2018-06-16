@@ -1,0 +1,19 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> {{ artist }} </h1>
+
+<img src="{{ artist.image500.url }}" alt="Image 01" height="500" width="500"/>
+<p>
+Creator:   {{ artist.user }}	 <br>
+Total Fitness:  {{ artist.gallery_fitness }} <br>
+No. Votes:	{{ artist.seen }} <br>
+Avg. Fitness {{ artist.mean_fitness }} <br>
+Created:  {{ artist.created }} <br>
+Genome:   {{ artist.genome }}	<br>
+Function: {{ artist.function }}</p>
+
+{% endblock %}
+

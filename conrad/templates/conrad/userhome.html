@@ -1,0 +1,35 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user_pops %}
+<h2> {{ username }}'s Conrad Populations </h2>
+<table>
+	<tr align = 'center'>
+		<th>Population Number</th>
+		<th>Best Image</th>
+		<th>Generation</th>
+		<th>Average Fitness</th>
+		<th>Last Active</th>
+	</tr>
+	
+	{% for population in user_pops %}
+		<tr  align = 'center'>
+			
+			<td><a href="{% url 'conrad:local' username population.0 %}"><h2>{{ population.0 }}</h2></a></td>
+			<td><img src="{{ population.1 }}" alt="Image 01" height="200" width="200"/></td>
+			<td>{{ population.2 }}</td>
+			<td>{{ population.3 }}</td>
+			<td>{{ population.4 }}</td>
+			
+		</tr>
+	{% endfor %}
+</table>
+<br/>
+
+{% endif %}
+
+<a href="{% url 'conrad:local' username new_pop %}">Start a New Population</a></li>
+
+{% endblock %}

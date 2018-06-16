@@ -1,0 +1,17 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" type = "text/css" href = "{% static 'conrad/style.css' %}" />
+
+<h2> About Conrad </h2>
+
+<p><a href = '/conrad/'>Conrad</a>- is a genetic algorithm which produces images using a string of 30 'A's, 'T's, 'C's, and 'G's.
+
+You can access the full code on <a href = 'https://github.com/camrobjones/conrad'>github</a>
+
+</p>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> Conrad </h1>
+
+<p>
+Named for Conrad Martens, the painter who accompanied Charles Darwin on the HMS Beagle, Conrad is a simple Genetic Algorithm which designs art based on user preferences, built on the Django framework.</p>
+
+<h2>Login</h2>
+<p> Enter your Username to begin evolving images </p>
+<form action = "{% url 'conrad:login' %}" method="post"/>
+	{% csrf_token %}
+	Username <br>
+	<input type="text" name="username">
+	<input type="Submit">
+</form>
+
+{% endblock %}
+

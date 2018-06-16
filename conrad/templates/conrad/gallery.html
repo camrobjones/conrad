@@ -1,0 +1,109 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> Gallery </h1>
+		<nav class="gallery-nav"> 
+			<div class="gallery-element">
+				<p>Sort</p>
+				<div class="gallery-dropdown-content">
+					<div class="gallery-dropdown-element">
+						<a href = '/conrad/gallery/best/{{ time }}/{{ group }}/{{ index }}/'>Best</a>
+					</div>
+					<div class="gallery-dropdown-element">
+						<a href = '/conrad/gallery/average/{{ time }}/{{ group }}/{{ index }}/'>Average Fitness</a>
+					</div>
+					<div class="gallery-dropdown-element">
+						<a href = '/conrad/gallery/top/{{ time }}/{{ group }}/{{ index }}/'>Total Fitness</a>
+					</div>
+				</div>
+			</div>
+			
+			<div class="gallery-element">
+				<p>Filter by Population Type</p>
+				<div class="gallery-dropdown-content">
+					<div class="gallery-dropdown-element">
+						<a href = '/conrad/gallery/{{ sort }}/{{ time }}/all/{{ index }}/'>All</a>
+					</div>
+					<div class="gallery-dropdown-element">
+						<a href = '/conrad/gallery/{{ sort }}/{{ time }}/local/{{ index }}/'>Local Games</a>
+					</div>
+					<div class="gallery-dropdown-element">
+						<a href = '/conrad/gallery/{{ sort }}/{{ time }}/global/{{ index }}/'>Global Games</a>
+					</div>
+				</div>
+			</div>
+			
+			<div class="gallery-element">
+				<p>Filter by Time</p>
+				<div class="gallery-dropdown-content">
+					<div class="gallery-dropdown-element">
+						<a href = '/conrad/gallery/{{ sort }}/day/{{ group }}/{{ index }}/'>Last Day</a>
+					</div>
+					<div class="gallery-dropdown-element">
+						<a href = '/conrad/gallery/{{ sort }}/week/{{ group }}/{{ index }}/'>Last Week</a>
+					</div>
+					<div class="gallery-dropdown-element">
+						<a href = '/conrad/gallery/{{ sort }}/month/{{ group }}/{{ index }}/'>Last Month</a>
+					</div>
+					<div class="gallery-dropdown-element">
+						<a href = '/conrad/gallery/{{ sort }}/year/{{ group }}/{{ index }}/'>Last Year</a>
+					</div>
+					<div class="gallery-dropdown-element">
+						<a href = '/conrad/gallery/{{ sort }}/alltime/{{ group }}/{{ index }}/'>All Time</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+<p> This is where the top images from all games are displayed. Images with a fitness greater than 8 are stored in the gallery.
+Users can then vote on how much they like each image. The ranking of images is determined by both their mean vote and the number of votes.</p>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+{% if top_images %}
+
+<table>
+	<tr>
+		<th>No.</th>
+		<th>Image</th>
+		<th>Info</th>
+		<th>Vote</th>
+	{% for artist in top_images %}
+	<form action = "{% url 'conrad:gallery' sort time group index %}" method = "post">
+	{% csrf_token %}
+		<tr>
+			<td>{{ forloop.counter }} </td>
+			<td><img src="{{ artist.image.url }}" alt="Image 01" height="200" width="200"/></label><br/></td>
+			<td>
+			<input type = "hidden" name = "artist" id = "artist{{ forloop.counter }}" value = "{{ artist.id }}" />
+			<label for="artist{{ forloop.counter }}">
+			<p>	Artist:   {{ artist.user }}	 <br>
+				Total Fitness:  {{ artist.gallery_fitness }} <br>
+				No. Votes:	{{ artist.seen }} <br>
+				Avg. Fitness {{ artist.mean_fitness }} <br>
+				Created:  {{ artist.created }} <br>
+				Genome:   {{ artist.genome }}	<br>
+				Function: {{ artist.function }}</p>
+			</td>
+			<td><input type = "number" min = "1" max = "10" name = "score" id = "artist{{ forloop.counter }}" value = "1" />
+			<input type = "submit" value = "Vote" />
+			<button><a href = '/conrad/inspect/{{ artist.id }}'>Inspect</a></td>
+			
+		
+	
+	</form>
+	{% endfor %}
+	
+</table>
+
+{% endif %}
+
+<div class="wrap">
+	<div class = "left" align = "left"><button class="indexbtn"><a href = '/conrad/gallery/{{ sort }}/{{ time }}/all/{{ pindex }}/'>Previous 10</a></button></div>
+	<div id = "right" align = "right"><button class="indexbtn"><a href = '/conrad/gallery/{{ sort }}/{{ time }}/all/{{ nindex }}/'>Next 10</a></button></div>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,26 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2> About </h2>
+
+<p>Genetic Algorithms is a free and open-source web tool for creating and learning about genetic algorithms.
+
+Genetic Algorithms (GAs) are a form of Machine Leanrning inspired by arguably the most creative force in the universe - evolution by natural selection.
+
+Instead of programming outcomes directly, or programming most of a solution and using machine learning to optimize a handful of parameters, genetic algorithms allows a really high degree of control over your programme.
+
+You just have to find a way of encoding your program as a 'genome' - often using 1s and 0 (I use As, Ts, Cs, and Gs) and create a population of 'agents' who attempt to perform some task using different encodings of your programme.
+
+Next you need to define a 'fitness function' to score the performance of your agents. The agents reproduce (and recombine their genomes with other agents) at a rate proportionate to their success at the task. Thus - in a slightly roundabout way - the population gets better and better at performing the task.
+
+The idea behind this site is not only to provide resources on GAs, but also to <del> harvest training data </del> make interacting with GAs fun, by allowing users to collaboratively perform the role of a fitness function, deciding the quality of GA output and provide fitness ratings themselves.
+
+At the moment the site only has one GA - <a href = '/conrad/'>Conrad</a>- which produces images based on a 30 digit string of 'ATCG's. 
+
+The website and Conrad have been designed and built by me, Cameron, using Python and Django.
+
+If you want to get in touch or have an idea for another GA or questions about this one send me an email at crjones94 'at' googlemail.com.
+
+{% endblock %}

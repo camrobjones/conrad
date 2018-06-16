@@ -1,0 +1,41 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h2> Global Genetic Art Population </h2>
+<h3> User: {{ username }} &nbsp Population: {{ population }} </h3>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+{% if top_images %}
+
+{% load static %}
+
+<link rel="stylesheet" type = "text/css" href = "{% static 'conrad/style.css' %}" />
+
+<div class="form-container">
+<form action = "{% url 'conrad:global_game' population %}" method = "post">
+{% csrf_token %}
+{% for artist in top_images %}
+	<div id="display">
+		<img src="{{ artist.image.url }}" alt="Image 01" height="200" width="200"/></label><br/>
+		<p>Artist: {{ artist }}</p>
+		<input type = "number" min = "1" max = "10" name = "score[]" id = "artist{{ forloop.counter }}" value = "1" />
+		<input type = "hidden" name = "artist[]" value = "{{ artist.id }}" />
+		<label for="artist{{ forloop.counter }}">
+	</div>
+{% endfor %}
+<br/>
+</div>
+<div id="vote">
+&nbsp;
+<br/>
+<input class = "submit" type = "submit" value = "Vote" />
+</div>
+</form>
+
+{% endif %}
+
+{% endblock %}
+
+
