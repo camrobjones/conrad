@@ -1,3 +1,4 @@
 media/*
 *.pyc
 *~
+EDS/settings.py
