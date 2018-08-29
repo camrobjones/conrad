@@ -3,33 +3,46 @@
 
 {% block content %}
 
+{% if request.session.guest %}
+<p> You're playing as a guest. <a href = '/accounts/signup/'> Sign Up </a> or <a href = '/accounts/login/'> Login</a> to save your creations.</p>
+{% endif %}
+
 {% if user_pops %}
 <h2> {{ username }}'s Conrad Populations </h2>
+
 <table>
 	<tr align = 'center'>
 		<th>Population Number</th>
 		<th>Best Image</th>
 		<th>Generation</th>
-		<th>Average Fitness</th>
+		<th>Avg. Fitness</th>
+		<th>Diversity</th>
+		<th>No to Next Gen</th>
 		<th>Last Active</th>
 	</tr>
 	
 	{% for population in user_pops %}
 		<tr  align = 'center'>
 			
-			<td><a href="{% url 'conrad:local' username population.0 %}"><h2>{{ population.0 }}</h2></a></td>
+			<td><a href="{% url 'conrad:local' population.0 %}"><h2>{{ population.0 }}</h2></a></td>
 			<td><img src="{{ population.1 }}" alt="Image 01" height="200" width="200"/></td>
 			<td>{{ population.2 }}</td>
 			<td>{{ population.3 }}</td>
-			<td>{{ population.4 }}</td>
+			<td>{{ population.4 }}%</td>
+			<td>{{ population.5 }}</td>
+			<td>{{ population.6 }}</td>
 			
 		</tr>
 	{% endfor %}
 </table>
 <br/>
+{% else %}
+<h3>
+You haven't started any populations yet.</h3>
 
+<p>Click below to get started on your very first population of evolving art!</p>
 {% endif %}
 
-<a href="{% url 'conrad:local' username new_pop %}">Start a New Population</a></li>
+<a href="{% url 'conrad:local' new_pop %}" class = "btn" style = "position:absolute; margin:20px; font-size:24px; font-size:24; color:#fff">Start a New Population</a></li>
 
 {% endblock %}

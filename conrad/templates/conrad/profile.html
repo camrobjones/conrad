@@ -1,0 +1,41 @@
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="top-container">
+
+<h1> {{ request.user }}'s home </h1>
+
+</div>
+<div style = "margin-bottom: 20px;">
+<h3>Account Settings</h3>
+<a class="btn" style="position:absolute;" href = 'accounts/password_change'> Change your Password </a><br/>
+<br/>
+<a class="btn" style="position:absolute; margin-bottom: 20px;" href = 'accounts/logout'> Logout </a>
+</div>
+
+<div class="home-main-container">
+<h2><a href = "{% url 'conrad:userhome' %}">Resume your Local Populations</a></h2><br/>
+
+<div class="home-container">
+	<img src="{% static 'conrad/local.PNG' %}" alt=Local Genetic Art Population" height="200" width="200"/></label>
+	<h3><a href = "{% url 'conrad:userhome' %}"></p>
+	</div>
+</div>
+</div>
+
+
+<div class="home-main-container">
+<h2><a href = "{% url 'conrad:globalhome' %}">Join the Global Population</a></h2><br/>
+
+<div class="home-container">
+	<img src="{% static 'conrad/global.PNG' %}" alt="Global Genetic Art Population" height="200" width="200"/></label>
+</div>
+</div>
+
+
+{% endblock %}
+

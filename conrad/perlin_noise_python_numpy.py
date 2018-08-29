@@ -2,11 +2,8 @@
 ## Taken from ruslangrimov's github here: https://github.com/ruslangrimov/perlin-noise-python-numpy
 
 import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.cm as cm
 from itertools import product, count
 
-from matplotlib.colors import LinearSegmentedColormap
 
 
 # it produce more vectors pointing diagonally than vectors pointing along

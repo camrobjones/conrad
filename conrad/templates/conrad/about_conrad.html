@@ -4,14 +4,46 @@
 {% block content %}
 
 {% load static %}
-<link rel="stylesheet" type = "text/css" href = "{% static 'conrad/style.css' %}" />
 
-<h2> About Conrad </h2>
+<h1> About Conrad</h1>
 
-<p><a href = '/conrad/'>Conrad</a>- is a genetic algorithm which produces images using a string of 30 'A's, 'T's, 'C's, and 'G's.
+<div style="width:100%; display:flex; max-width:800px;">
+<div class="home-container" style="width:800px;">
+	<img src="{% static 'conrad/about_conrad.png' %}" alt="Conrad Genetic Art Algorithm" height="300" width="300"/></label>
 
-You can access the full code on <a href = 'https://github.com/camrobjones/conrad'>github</a>
+	<div class = "home-p" style="max-width:500px;padding-top: 0px; margin-top:-20px;">
+		<p>Conrad is a genetic algorithm that designs images based on user input.</p>
 
-</p>
+<p>Conrad is composed of populations of agents, known as <i>Artists</i>, as they design the images which are used to represent them.</p>
+
+<p>Conrad's Artists, like all living creatures, have a <i>genotype</i> and a <i>phenotype</i>. Their genotype is a string of 'A's, 'T's, 'C's, and 'G's, just like yours! This genotype is used by the algorithm to produce an image, which is the Artist's phenotype.</p>
+
+<p>At the start of a population, 30 artists with 30 letters in their genome are generated totally at random. They then display their phenotype to the user, who scores them between 1 and 10. At the end of the generation, the Artists reproduce. Those with higher scores, or 'fitness' are more likely to have more offspring, and so gradually the population moves towards genotypes which the user is more likely to rate as attractive.</p>
+
+	</div>
+</div>
+</div>
+
+<div style="width:100%;max-width:800px;padding-top: 0px; margin-top:-20px;">
+
+<p>Conrad was inspired by the work of Karl Sims in the 1990s who wrote several <a href = '//www.karlsims.com/papers/siggraph91.html'>papers</a> on his own Genetic Art, and even created an <a href = '//www.karlsims.com/genetic-images.html'>interactive exhibition</a> where visitors voted for their favourite images by standing in front of them. While Sims did not leave his source code, Conrad is heavily based on both his idea and his specific instantiation of Genetic Art.</p>
+
+<h2> How it works </h2>
+
+<h3> How are the images generated? </h3>
+
+<p>The images are generated from a selection of simple mathematical functions which act on randomly generated numbers and the x,y co-ordinates of pixels in the image to produce a RGB values which make up the image.</p>
+
+<p>The functions are specified by the genome of the Artist. The genome is split down into 3-character codons. Each codon specifies a function, for example 'AAA' = 'abs()' and 'CTC' = min. There are 64 unique codons which I won't list here, but you can see the <a href = '//github.com/camrobjones/conrad/'>full code</a> for how the images are generated if you're interested. You can also play around with writing, editing, and mating your own genomes in the <a href = '/conrad/sandbox'>Conrad Sandbox.</a></p>
+
+<h3> How do the images evolve? </h3>
+
+<p>Once the images have been generated, the all important step is evaluating the fitness of each Artist. Here, that's done by you: the user. The images you give high scores to are 'fitter' and more likely to pass on their genes to the next generation. For each required member of the new generation, the code selects two members of the current generation. The fitter the Artist the more likely they are to be selected.</p>
+
+<p>Once selected, the pair mate: their genomes are 'crossed-over', meaning some characters from one are mixed with characters from the other. The new genome is mutated with a small probability, and a new Artist is born. The new Artist then generates its own image which is seen in the next generation.</p>
+
+<p>All of the images on this site have been created in exactly this way by Conrad. So get started and <a href = '/conrad/'>create your own!</a></p>
+
+</div>
 
 {% endblock %}

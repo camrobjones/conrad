@@ -1,0 +1,31 @@
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+<div class="top-container">
+
+<h1> Data </h1>
+
+<p>
+Here you can download the full population of anonymised data.</p>
+</div>
+
+{% if request.user %}
+
+	{% if request.session.guest %}
+	<p> Please <a href = "{% url 'conrad:login' %}">Create an Account</a>to download the data</p>
+
+	{% else %}
+	<p><a href = "{% url 'conrad:data_download' %}">Download the Data</a></p>
+	{% endif %}
+
+{% else %}
+<p> Please <a href = "{%url 'conrad:login' %}">Create an Account</a>to download the data</p>
+{% endif %}
+
+{% endblock %}
+

@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% load static %}
+
+<div class="top-container">
+
+    <h1> Login </h1>
+
+    {% if form.errors %}
+    <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+
+    {% if next %}
+        {% if user.is_authenticated %}
+        <p>Your account doesn't have access to this page. To proceed,
+        please login with an account that has access.</p>
+        {% else %}
+        <p>Please login to see this page.</p>
+        {% endif %}
+    {% endif %}
+</div>
+
+
+    <div class="home-main-container">
+        <h2><a href = "{% url 'signup' %}"> Sign Up</a></h2><br/>
+
+        <div class="home-container">
+            <img src="{% static 'conrad/sign_up.png' %}" alt=Local Genetic Art Population height="300" width="300"/></label>
+            
+            <div class = "home-p">
+                <h3><a href = "{% url 'signup' %}">Don't have an account? </a></h3>
+                <p>Sign Up <a href = '/accounts/signup/'>here</a> to create an account so you can save and resume your populations, and show off your creations in the <a href = "{% url 'conrad:gallery' 'best' 'alltime' 'all' 0 %}">Gallery</a></p>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="home-main-container">
+        <h2>Login</h2><br/>
+
+        <div class="home-container">
+            <img src="{% static 'conrad/login.png' %}" alt="Login to Genetic Algorithms" height="300" width="300"/></label>
+
+            <div class = "home-p">
+
+                <h3>Already have an account?</h3>
+
+                <p> Sign in below to see your populations, top images, and more </p>
+                       
+                <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <table>
+                <tr>
+                    <td>{{ form.username.label_tag }}</td>
+                    <td>{{ form.username }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.password.label_tag }}</td>
+                    <td>{{ form.password }}</td>
+                </tr>
+                </table>
+                <input type="submit" value="login" />
+                <input type="hidden" name="next" value="{{ next }}" />
+                </form>
+
+                <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+            </div>
+        </div>
+    </div>
+
+    {% if next %}
+
+    <div class="home-main-container">
+        <h2><a href= "{{ next }}0">Continue as a Guest</a></h2><br/>
+        <div class="home-container">
+            <img src="{% static 'conrad/guest.png' %}" alt="Login to Genetic Algorithms" height="300" width="300"/></label>
+
+            <div class = "home-p">
+                       
+                <h3><a href= "{{ next }}0">Don't want to Sign Up?</a></h3>
+                <p>You won't be able to save or resume your population if you <a href= "{{ next }}0">continue as a Guest.</a></p>
+
+            </div>
+        <div>
+    </div>
+
+{% endif %}
+
+{% endblock %}

@@ -16,16 +16,35 @@ Including another URLconf
 from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.urls import include, path
 from django.conf import settings
+from lazysignup.views import convert
 
 from conrad import views
 
 urlpatterns = [
     path('conrad/', include('conrad.urls')),    
     path('admin/', admin.site.urls),
-	path('', views.main_home, name = 'home'),
-	path('about/', views.about, name = 'about'),
+    path('', views.main_home, name = 'home'),
+    path('about/', views.about, name = 'about'),
+
+    path('accounts/login/',  auth_views.LoginView.as_view(template_name='EDS/login.html'), name='login'),
+    path('accounts/reset/', auth_views.PasswordResetView.as_view(template_name='EDS/password_reset.html'),
+         name='password_reset'),
+    path('accounts/logout/',  auth_views.LogoutView.as_view(template_name='EDS/logout.html'), name='logout'),
+    path('accounts/profile/', views.profile, name='profile'),
+    path('accounts/signup/', views.signup, name='signup'),
+
+    path('convert/', convert, name = 'lazysignup_convert'),
+     #    include('lazysignup.urls')),
+    path('accounts/privacy_policy/', views.privacy_policy, name='privacy_policy'),
+    path('accounts/password/', views.change_password, name='change_password'),
+    path('password_reset/', auth_views.password_reset, name='password_reset'),
+    path('password_reset/done/', auth_views.password_reset_done, name='password_reset_done'),
+    path('reset/<uidb64>[0-9A-Za-z_\-]+/<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20}/',
+        auth_views.password_reset_confirm, name='password_reset_confirm'),
+    path('reset/done/', auth_views.password_reset_complete, name='password_reset_complete'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

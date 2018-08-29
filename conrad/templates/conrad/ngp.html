@@ -1,0 +1,23 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" type = "text/css" href = "{% static 'conrad/style.css' %}" />
+
+<p>{{ success }}</p>
+
+{% for k, v in pops.items %}
+	<p>{{ k }}: {{ v }}</p>
+{% endfor %}
+
+<h2> New Global Pop </h2>
+
+<form action = "{% url 'conrad:ngp' %}" method = "post">
+	{% csrf_token %}
+<input type = "radio" name = "doit" value = "True" />
+<input class = "submit" type = "submit" value = "submit" />
+</form>
+
+{% endblock %}

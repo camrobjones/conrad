@@ -17,6 +17,9 @@
 					<div class="gallery-dropdown-element">
 						<a href = '/conrad/gallery/top/{{ time }}/{{ group }}/{{ index }}/'>Total Fitness</a>
 					</div>
+					<div class="gallery-dropdown-element">
+						<a href = '/conrad/gallery/recent/{{ time }}/{{ group }}/{{ index }}/'>Recent</a>
+					</div>
 				</div>
 			</div>
 			
@@ -57,7 +60,7 @@
 			</div>
 		</nav>
 
-<p> This is where the top images from all games are displayed. Images with a fitness greater than 8 are stored in the gallery.
+<p> This is where the top images from all games are displayed.
 Users can then vote on how much they like each image. The ranking of images is determined by both their mean vote and the number of votes.</p>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
@@ -74,22 +77,41 @@ Users can then vote on how much they like each image. The ranking of images is d
 	<form action = "{% url 'conrad:gallery' sort time group index %}" method = "post">
 	{% csrf_token %}
 		<tr>
-			<td>{{ forloop.counter }} </td>
-			<td><img src="{{ artist.image.url }}" alt="Image 01" height="200" width="200"/></label><br/></td>
+			<td>
+				<script>
+					c = {{ forloop.counter }} + {{index}};
+					document.write(c) 
+				</script>
+			</td>
+			<td><img src="{{ artist.image.url }}" alt="artist{{ forloop.counter }}" height="200" width="200"/></label><br/></td>
 			<td>
 			<input type = "hidden" name = "artist" id = "artist{{ forloop.counter }}" value = "{{ artist.id }}" />
 			<label for="artist{{ forloop.counter }}">
-			<p>	Artist:   {{ artist.user }}	 <br>
-				Total Fitness:  {{ artist.gallery_fitness }} <br>
-				No. Votes:	{{ artist.seen }} <br>
-				Avg. Fitness {{ artist.mean_fitness }} <br>
-				Created:  {{ artist.created }} <br>
-				Genome:   {{ artist.genome }}	<br>
-				Function: {{ artist.function }}</p>
+			<p>	Creator:   {{ artist.user }}	 <br/>
+				Population: {{ artist.population}} {% if artist.global_pop %} (Global) {% endif %} <br/>
+				Generation: {{ artist.generation }}<br/>
+				Total Fitness:  {{ artist.gallery_fitness }} <br/>
+				No. Votes:	{{ artist.seen }} <br/>
+				Avg. Fitness {{ artist.mean_fitness }} <br/>
+				Created:  {{ artist.created }} <br/>
+				Genome:   {{ artist.genome }} </p/>
 			</td>
-			<td><input type = "number" min = "1" max = "10" name = "score" id = "artist{{ forloop.counter }}" value = "1" />
-			<input type = "submit" value = "Vote" />
-			<button><a href = '/conrad/inspect/{{ artist.id }}'>Inspect</a></td>
+			<td>
+				{% if request.user.is_authenticated %}
+					{% if forloop.counter in voted %}
+					<p> You've Voted Already</p>
+					{% else %}
+					<input type = "number" min = "1" max = "10" name = "score" id = "artist{{ forloop.counter }}" value = "1" />
+					
+					<input type = "submit" value = "Vote" /><br/>
+					{% endif %}
+				{% else %}
+				<p><a href = "{% url 'login'%}">Login</a> to Vote</p>
+				{% endif %}
+				<button><a href = '/conrad/inspect/{{ artist.id }}'>Inspect</a>
+				
+			</td>
+
 			
 		
 	
@@ -101,8 +123,8 @@ Users can then vote on how much they like each image. The ranking of images is d
 {% endif %}
 
 <div class="wrap">
-	<div class = "left" align = "left"><button class="indexbtn"><a href = '/conrad/gallery/{{ sort }}/{{ time }}/all/{{ pindex }}/'>Previous 10</a></button></div>
-	<div id = "right" align = "right"><button class="indexbtn"><a href = '/conrad/gallery/{{ sort }}/{{ time }}/all/{{ nindex }}/'>Next 10</a></button></div>
+	<div class = "left" align = "left"><button class="indexbtn"><a href = '/conrad/gallery/{{ sort }}/{{ time }}/{{group}}/{{ pindex }}/'>Previous 10</a></button></div>
+	<div id = "right" align = "right"><button class="indexbtn"><a href = '/conrad/gallery/{{ sort }}/{{ time }}/{{group}}/{{ nindex }}/'>Next 10</a></button></div>
 </div>
 
 {% endblock %}

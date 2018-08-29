@@ -1,0 +1,90 @@
+2018-08-25 15:51:45,637 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:51:45,639 - background_task - INFO - Generating camrobjones_4_0_0 in the background
+2018-08-25 15:51:45,649 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:51:47,209 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:51:47,210 - background_task - INFO - Generating camrobjones_4_0_1 in the background
+2018-08-25 15:51:47,213 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:51:48,428 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:51:48,428 - background_task - INFO - Generating camrobjones_4_0_2 in the background
+2018-08-25 15:51:48,433 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:51:49,089 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:51:49,090 - background_task - INFO - Generating camrobjones_4_0_3 in the background
+2018-08-25 15:51:49,095 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:51:50,296 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:51:50,297 - background_task - INFO - Generating camrobjones_4_0_4 in the background
+2018-08-25 15:51:50,300 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:51:51,695 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:51:51,696 - background_task - INFO - Generating camrobjones_4_0_5 in the background
+2018-08-25 15:51:51,850 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:51:53,186 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:51:53,187 - background_task - INFO - Generating camrobjones_4_0_6 in the background
+2018-08-25 15:51:56,277 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:51:56,915 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:51:56,916 - background_task - INFO - Generating camrobjones_4_0_7 in the background
+2018-08-25 15:51:57,397 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:51:58,488 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:51:58,489 - background_task - INFO - Generating camrobjones_4_0_8 in the background
+2018-08-25 15:51:59,471 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:52:00,790 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:52:00,791 - background_task - INFO - Generating camrobjones_4_0_9 in the background
+2018-08-25 15:52:00,943 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:52:02,454 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:52:02,454 - background_task - INFO - Generating camrobjones_4_0_10 in the background
+2018-08-25 15:52:03,271 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:52:04,761 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:52:04,762 - background_task - INFO - Generating camrobjones_4_0_11 in the background
+2018-08-25 15:52:05,556 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:52:06,546 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:52:06,547 - background_task - INFO - Generating camrobjones_4_0_12 in the background
+2018-08-25 15:52:07,338 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:52:08,725 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:52:08,726 - background_task - INFO - Generating camrobjones_4_0_13 in the background
+2018-08-25 15:52:09,340 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:52:10,212 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:52:10,213 - background_task - INFO - Generating camrobjones_4_0_14 in the background
+2018-08-25 15:52:11,914 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:52:12,643 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:52:12,644 - background_task - INFO - Generating camrobjones_4_0_15 in the background
+2018-08-25 15:52:12,765 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:52:14,294 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:52:14,295 - background_task - INFO - Generating camrobjones_4_0_16 in the background
+2018-08-25 15:52:16,366 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:52:17,066 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:52:17,067 - background_task - INFO - Generating camrobjones_4_0_17 in the background
+2018-08-25 15:52:17,473 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:52:18,998 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:52:18,999 - background_task - INFO - Generating camrobjones_4_0_18 in the background
+2018-08-25 15:52:19,436 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:52:20,628 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:52:20,629 - background_task - INFO - Generating camrobjones_4_0_19 in the background
+2018-08-25 15:52:20,918 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:52:21,721 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:52:21,722 - background_task - INFO - Generating camrobjones_4_0_20 in the background
+2018-08-25 15:52:22,084 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:52:23,318 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:52:23,319 - background_task - INFO - Generating camrobjones_4_0_21 in the background
+2018-08-25 15:52:24,446 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:52:25,333 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:52:25,334 - background_task - INFO - Generating camrobjones_4_0_22 in the background
+2018-08-25 15:52:25,709 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:52:27,224 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:52:27,225 - background_task - INFO - Generating camrobjones_4_0_23 in the background
+2018-08-25 15:52:27,601 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:52:28,783 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:52:28,784 - background_task - INFO - Generating camrobjones_4_0_24 in the background
+2018-08-25 15:52:29,672 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:52:30,358 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:52:30,359 - background_task - INFO - Generating camrobjones_4_0_25 in the background
+2018-08-25 15:52:31,318 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:52:32,626 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:52:32,628 - background_task - INFO - Generating camrobjones_4_0_26 in the background
+2018-08-25 15:52:33,438 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:52:34,232 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:52:34,233 - background_task - INFO - Generating camrobjones_4_0_27 in the background
+2018-08-25 15:52:34,628 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:52:35,411 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:52:35,411 - background_task - INFO - Generating camrobjones_4_0_28 in the background
+2018-08-25 15:52:36,477 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image
+2018-08-25 15:52:37,536 - background_task.tasks - INFO - Running EDS.tasks.generate_image
+2018-08-25 15:52:37,537 - background_task - INFO - Generating camrobjones_4_0_29 in the background
+2018-08-25 15:52:37,768 - background_task.tasks - INFO - Ran task and deleting EDS.tasks.generate_image

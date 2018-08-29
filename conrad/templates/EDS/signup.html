@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+
+<div class="home-main-container" style="width: 1000px;">
+<h2>Create an Account</h2><br/>
+
+<div class="home-container" style="width: 1000px;">
+  <img src="{% static 'conrad/sign_up.png' %}" alt="Create Genetic Art User Account" height="500" width="500"/></label>
+
+  <div class = "home-p" style="max-width: 500px;">
+    <h2>Sign up</h2>
+    <form method="post">
+      {% csrf_token %}
+      {% for field in form %}
+        <p>
+          {{ field.label_tag }}<br>
+          {{ field }}
+          {% if field.help_text %}
+            <small style="color: grey">{{ field.help_text }}</small>
+          {% endif %}
+          {% for error in field.errors %}
+            <p style="color: red">{{ error }}</p>
+          {% endfor %}
+        </p>
+      {% endfor %}
+    <button type="submit">Sign up</button>
+
+    <p> You can read our <a href = '/accounts/privacy_policy'>Privacy Policy</a> here.</p>
+  </form>
+  <div>
+</div>
+</div>
+</div>
+</div>
+
+</br>
+
+</div>
+
+  
+{% endblock %}

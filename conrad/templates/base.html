@@ -1,9 +1,33 @@
 {% load staticfiles %}
+{% load i18n lazysignup_tags %}
 
 <html>
 	<head>
 		<title>Genetic Algorithms</title>
-		<h1>genetic-algorithms.com</h1>
+		<link rel="icon" href="{% static 'conrad/icon.ico' %}">
+		
+		<meta property="og:title" content="Genetic Algorithms" />
+		<meta property="og:type" content="website" />
+		<meta property="og:image" content="{% static 'conrad/home1.png' %}" />
+		<meta property="og:description" 
+  		content="genetic-algorithms.com is a free and open-source web tool for creating and learning about Genetic Algorithms." />
+  		<meta property="og:determiner" content="" />
+  		<meta property="og:site_name" content="Genetic Algorithms" />
+
+				<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-55825994-3"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-55825994-3');
+		</script>
+
+		<div class = "header-container">
+			<img src = "{% static 'conrad/header.png' %}" alt = 'header' style="min-width:1000px; height:140px;">
+			<div class = "header-text"><h1>genetic-algorithms.com</h1></div>
+		</div>
 		<nav class ="main-menu"> 
 			<div class="nav-element">
 				<a href = '/'>Home</a>
@@ -18,21 +42,47 @@
 						<a href = '/conrad/about'>About Conrad</a>
 					</div>
 					<div class="dropdown-element">
-						<a href = '/conrad/'>Local Population</a>
+						<a href = '/conrad/local/'>Local Population</a>
 					</div>
 					<div class="dropdown-element">
 						<a href = '/conrad/global/'>Global Population</a>
 					</div>
 					<div class="dropdown-element">
-						<a href = '/conrad/gallery/top/alltime/all/0/'>Gallery</a>
+						<a href = '/conrad/gallery/best/alltime/all/0/'>Gallery</a>
 					</div>
 				</div>
 			</div>
 			<div class="nav-element">
-				<a href = '/contact'>Learn</a>
+				<a href = '/conrad/learn/'>Learn</a>
+				<div class="dropdown-content">
+					<div class="dropdown-element">
+						<a href = '/conrad/sandbox'>Conrad Sandbox</a>
+					</div>
+					<div class="dropdown-element">
+						<a href = '/conrad/resources/'>Resources</a>
+					</div>
+					<div class="dropdown-element">
+						<a href = '/conrad/data/'>Data</a>
+					</div>
+				</div>
 			</div>
 			<div class="nav-element">
-				<a href = '/contact'>Contact</a>
+				<a href = '/conrad/contact/'>Contact</a>
+			</div>
+			<div class="nav-element-login">{% if request.user.is_authenticated %}
+				<div class = "nav-login-container">
+				<table class = "login-table">
+					<tr><td><a href = '/accounts/profile'>{{request.user}}</a></td></tr>
+					{% if request.session.guest %}
+					<tr><td><a href = '/accounts/login'>Login</a></td></tr>
+					{% else %}
+					<tr><td><a href = '/accounts/logout'>logout</a></td></tr>
+					{% endif %}
+				</table>
+				</div>
+			{% else %}
+				<a href = '/accounts/login'>login</a>
+			{% endif %}
 			</div>
 		</nav>
 		<link rel="stylesheet" type = "text/css" href = "{% static 'conrad/style.css' %}" />

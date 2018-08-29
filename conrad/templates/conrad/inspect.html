@@ -3,17 +3,85 @@
 
 {% block content %}
 
-<h1> {{ artist }} </h1>
+<h1> Inspect {{ artist }} </h1>
 
-<img src="{{ artist.image500.url }}" alt="Image 01" height="500" width="500"/>
+
+<div>
+<h2> Parents </h2>
+
+{% if mother %}
+<div class = "flex-container">
+	<div class = "left">
+		<p><a href = '/conrad/inspect/{{ mother.id }}'>Mother</a></p>
+		<img src="{{ mother.image.url }}" alt="Image 01" height="200" width="200"/>
+		<p>{{ mother }}
+		<p>Genome: {{ mother.genome }} </p>
+		
+	</div>
+	<div class = "right">
+		<p><a href = '/conrad/inspect/{{ father.id }}'>Father</a></p>
+		<img src="{{ father.image.url }}" alt="Image 01" height="200" width="200"/>
+		<p>{{ father }}
+		<p>Genome: {{ father.genome }} </p>
+	</div>
+</div>
+<div>
+
+{% else %}
+
+<p> {{ artist }} has no parents. It was generated at random.</p>
+{% endif %}
+
+
+<div>
+<h2> {{ artist }} </h2>
+
+<div class = flex-container >
+<img src="{{ artist.image500.url }}" alt="Image 01" height="500" width="500" style = "min-width: 500px;"/>
+<div style=padding-left:20px;max-width=300px;>
 <p>
-Creator:   {{ artist.user }}	 <br>
-Total Fitness:  {{ artist.gallery_fitness }} <br>
-No. Votes:	{{ artist.seen }} <br>
-Avg. Fitness {{ artist.mean_fitness }} <br>
-Created:  {{ artist.created }} <br>
-Genome:   {{ artist.genome }}	<br>
-Function: {{ artist.function }}</p>
+	{% if artist.seen %}
+	<ul class = detail-list>
+		<li>Creator:   {{ artist.user }}	 </li>
+		<li>Population: {{ artist.population}} {% if artist.global_pop %} (Global) {% endif %} </li>
+		<li>Generation: {{ artist.generation }}</li>
+		<li>Total Fitness:  {{ artist.gallery_fitness }} </li>
+		<li>No. Votes:	{{ artist.seen }} </li>
+		<li>Avg. Fitness {{ artist.mean_fitness }} </li>
+		<li>Created:  {{ artist.created }} </li>
+		<li>Genome:   {{ artist.genome }}	</li>
+		<li>Function: <p style= font-size:15px;> {{ artist.function }}</p></li>
+	</ul>
+	<a href = '/conrad/sandbox/?image1={{artist.genome}}'>Import to Sandbox</a>
+	{% else %}
+	<h3> {{artist}} hasn't been voted on yet. </h3>
+	<p>After you've voted on it you'll see information here about its genome, fitness, and the function used to create it </p>
+	{% endif %}
+
+	<h3> Not what you were expecting?</h3>
+	<p>Some images will appear differently when resized as some of the functions which generate images are sensitive to the scale. We're working to improve this.</p>
+</p>
+</div>
+</div>
+
+<div>
+<h2> Children </h2>
+
+{% if children %}
+<div class = "child-flex-container">
+	{% for child in children %}
+	<div class = "child-container"
+		<p><a href = '/conrad/inspect/{{ child.id }}'>{{ child.user }}_{{ child.population }}_{{ child.generation }}_{{ child.member }}</a></p>
+			<img src="{{ child.image.url }}" alt="Image 01" height="200" width="200"/>
+			<p style=max-width:250px;>Genome: {{ child.genome }} </p>
+	</div>
+	{% endfor %}
+</div>
+<div>
+{% else %}
+
+<p> {{ artist }} has no children. Either it's in the last generation of its population or it was unsuccessful in the ruthless process of natural selection </p>
+{% endif %}
 
 {% endblock %}
 

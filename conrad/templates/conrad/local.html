@@ -3,7 +3,12 @@
 
 {% block content %}
 <h2> Local Genetic Art Population </h2>
-<h3> User: {{ username }} &nbsp Population: {{ population }} </h3>
+<h3> User: {{ username }} &nbsp Population: {{ population }}  &nbsp Generation: {{ top_images.1.generation }} &nbsp Showing members: {{ top_images.0.member }} - {{ top_images.4.member }}</h3>
+
+
+{% if request.session.guest %}
+<p> You're playing as a guest. <a href = '/accounts/signup/'> Sign Up </a> or <a href = '/accounts/login/'> Login</a> to save your creations.</p>
+{% endif %}
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
@@ -14,15 +19,16 @@
 <link rel="stylesheet" type = "text/css" href = "{% static 'conrad/style.css' %}" />
 
 <div class="form-container">
-<form action = "{% url 'conrad:local' username population %}" method = "post">
+<form action = "{% url 'conrad:local' population %}" method = "post">
 {% csrf_token %}
 {% for artist in top_images %}
 	<div id="display">
 		<img src="{{ artist.image.url }}" alt="Image 01" height="200" width="200"/></label><br/>
 		<p>Artist: {{ artist }}</p>
-		<input type = "number" min = "1" max = "10" name = "score[]" id = "artist{{ forloop.counter }}" value = "1" />
+		<input type = "number" min = "1" max = "10" name = "score[]" id = "artist{{ forloop.counter }}" value = "1" required=True/>
 		<input type = "hidden" name = "artist[]" value = "{{ artist.id }}" />
 		<label for="artist{{ forloop.counter }}">
+			<a class = "btn" href = '/conrad/inspect/{{ artist.id }}'>Inspect</a>
 	</div>
 {% endfor %}
 <br/>

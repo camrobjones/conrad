@@ -1,7 +1,0 @@
-Django==2.0.5
-numpy==1.14.2
-pandas==0.22.0
-pytz==2018.4
-django_background_tasks==1.1.13
-boto==2.48.0
-Pillow==5.1.0

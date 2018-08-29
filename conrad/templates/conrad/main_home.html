@@ -3,8 +3,37 @@
 
 {% block content %}
 
+{% load static %}
 
-<p>Explore, Learn, and Play with Genetic Algorithms</p>
-<p> <a href = '/conrad/'>Conrad</a> is our first GA. It uses user preferences to create images."</p>
+
+<div class="home-main-container">
+<h2><a href = "{% url 'conrad:home' %}">Conrad</a></h2><br/>
+
+<div class="home-container">
+	<img src="{% static 'conrad/home1.png' %}" alt="Conrad Genetic Art Algorithm" height="300" width="300"/></label>
+
+	<div class = "home-p">
+		<h3><a href = "{% url 'conrad:home' %}">Genetic Art</a></h3>
+		<p> 
+		Conrad is a genetic algorithm which generates art. Create your own personal population of images using Conrad, join the Global Conrad population, or view the best creations in the Gallery.</p>
+	</div>
+</div>
+</div>
+
+
+<div class="home-main-container">
+<h2><a href = "{% url 'about' %}">About</a></h2><br/>
+
+<div class="home-container">
+	<img src="{% static 'conrad/home2.png' %}" alt="Genetic-Algorithms.com" height="300" width="300"/></label>
+
+	<div class = "home-p">
+		<h3><a href = "{% url 'about' %}">What are Genetic Algorithms?</a></h3>
+		<p> 
+		Genetic Algorithms are a form of machine learning inspired by natural selection.</p>
+		<p>genetic-algorithms.com is dedicated to creating interactive Genetic Algorithms to help users understand how they work.</p>
+	</div>
+</div>
+</div>
 
 {% endblock %}
