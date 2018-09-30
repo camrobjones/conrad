@@ -5,27 +5,26 @@
 
 {% block content %}
 
-
 <div class="top-container">
 
 <h1> Conrad </h1>
 
 <p>
-Named for Conrad Martens, the painter who accompanied Charles Darwin on the HMS Beagle, Conrad is a simple Genetic Algorithm which designs art based on user preferences, built on the Django framework.</p>
+Named for Conrad Martens, the painter who accompanied Charles Darwin on the HMS Beagle, Conrad is a simple Genetic Algorithm which designs art based on user preferences. <a href = '/conrad/about'> Learn more</a></p>
 </div>
 
-
+<div class = 'flex-wrap-container'>
 <div class="home-main-container">
 <h2><a href = "{% url 'conrad:userhome' %}">Local Population</a></h2><br/>
 
 <div class="home-container">
-	<img src="{% static 'conrad/local.PNG' %}" alt=Local Genetic Art Population" height="300" width="300"/></label>
+	<a href = "{% url 'conrad:userhome' %}"><img src="{% static 'conrad/local.PNG' %}" alt=Local Genetic Art Population" height="300" width="300"/></a>
 	
 
 	<div class = "home-p">
-	<h3><a href = "{% url 'conrad:userhome' %}">Start evolving your own local population of art.</a></h3>
+	<h3><a href = "{% url 'conrad:userhome' %}">Start evolving your own local population of art</a></h3>
 
-	<p> The first generation of images will be created entirely at random. By selecting your favourites the algorithm soon learns which sorts of images you like, and the art population will become more and more similar to your tastes.</p>
+	<p> The first generation of images will be created entirely at random. By selecting your favourites, the algorithm soon learns which sorts of images you like and the art population will become more and more similar to your tastes.</p>
 	</div>
 </div>
 </div>
@@ -35,14 +34,47 @@ Named for Conrad Martens, the painter who accompanied Charles Darwin on the HMS 
 <h2><a href = "{% url 'conrad:globalhome' %}">Global Population</a></h2><br/>
 
 <div class="home-container">
-	<img src="{% static 'conrad/global.PNG' %}" alt="Global Genetic Art Population" height="300" width="300"/></label>
+	<a href = "{% url 'conrad:globalhome' %}"><img src="{% static 'conrad/global.PNG' %}" alt="Global Genetic Art Population" height="300" width="300"/></a>
 
 	<div class = "home-p">
-		<h3><a href = "{% url 'conrad:globalhome' %}">Join the global population and generate art for everyone.</a></h3>
+		<h3><a href = "{% url 'conrad:globalhome' %}">Join the global population and generate art for everyone</a></h3>
 		<p> 
 		The global population has been evolving since the start of the site. Everyone has access to it, and so the algorithm is attempting to find art which is appreciated by all users.</p>
 	</div>
 </div>
+</div>
+
+<div class="home-main-container">
+<h2><a href = "{% url 'conrad:gallery' 'best' 'alltime' 'all' '0' %}">Gallery</a></h2><br/>
+
+<div class="home-container">
+	<a href = "{% url 'conrad:gallery' 'best' 'alltime' 'all' '0' %}"><img src="{% static 'conrad/gallery.png' %}" alt=Local Genetic Art Population" height="300" width="300"/></a>
+	
+
+	<div class = "home-p">
+	<h3><a href = "{% url 'conrad:gallery' 'best' 'alltime' 'all' '0' %}">View and vote on the best creations</a></h3>
+
+	<p> The gallery contains all of the genetic art created since the beginning of the site. Come here to see how your own genetic populations compare to others, and vote for your favourites.</p>
+	</div>
+</div>
+</div>
+
+
+<div class="home-main-container">
+<h2><a href = "{% url 'conrad:conrad_about' %}">About Conrad</a></h2><br/>
+
+<div class="home-container">
+	<a href = "{% url 'conrad:conrad_about' %}"><img src="{% static 'conrad/conrad_about.PNG' %}" alt=Local Genetic Art Population" height="300" width="300"/></a>
+	
+
+	<div class = "home-p">
+	<h3><a href = "{% url 'conrad:conrad_about' %}">Find out how Conrad generates art</a></h3>
+
+	<p> Interested in what's happening under the hood? Find out how Conrad creates genomes which make up the population, and how those genomes generate genetic art.</p>
+	</div>
+</div>
+</div>
+
 </div>
 
 

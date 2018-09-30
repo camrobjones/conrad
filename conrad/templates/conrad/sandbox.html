@@ -2,6 +2,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+{% if is_mobile %}
+<style>
+img {
+    height: 350;
+    width: 350;
+}
+</style>
+{% endif %}
+
 <h2> Conrad Sandbox </h2>
 
 {% if error_message %}<p><strong style="color:red">{{ error_message }}</strong></p>{% endif %}
@@ -13,12 +23,12 @@
 
 
 <form class = 'sandbox-form' action = "{% url 'conrad:sandbox' %}" method = "get">
-	<div class = "flex-container">
+	<div class = "flex-container" style = "max-width: 100%">
 		<div class = "left">
 			<div>
 				<h3> Custom Artist 1 </h3>
 				<p>Enter a genome</p>
-				<input type = "text" name = "image1" id = "image1" value = "{{ genome1 }}" pattern=".{0}|.{30,}"; size=42; required title="Minimum length: 30 chars)"/>
+				<input type = "text" name = "image1" id = "image1" value = "{{ genome1 }}" pattern=".{0}|[atcgATCG]{30,90}"; size=42; required title="Genomes must contain between 30 and 90 A, T, C, or Gs)" class = "sandboxinput"/>
 				<input class = "submit" type = "submit" value = "Generate" />
 			</div>
 	
@@ -36,7 +46,7 @@
 			<div>
 				<h3>Custom Artist 2</h3>
 				<p>Enter another genome</p>
-				<input type = "text" name = "image2" id = "image2" value = "{{ genome2 }}" pattern=".{0}|.{30,}"; size=42; >
+				<input type = "text" name = "image2" id = "image2" value = "{{ genome2 }}" pattern=".{0}|[atcgATCG]{30,90}"; size=42; title="Genomes must contain between 30 and 90 A, T, C, or Gs)" class = "sandboxinput"/>
 				<input class = "submit" type = "submit" value = "Generate" />
 			</div>
 		<br/>
@@ -49,21 +59,21 @@
 	</div>
 	<br>
 	</div>
-	<div>
+	<div class = 'centre'>
 		{% if image1 and image2 %}
 		<h3> Create Offspring </h3>
 		<input type="radio" id="offspring"
      name="offspring" value="True">
-    <label for="contactChoice1">True</label>
+    <label class = 'sandboxradio' for="contactChoice1">True</label>
 
     <input type="radio" id="offspring"
      name="offspring" value="False">
-    <label for="contactChoice1">False</label>
+    <label class = 'sandboxradio' for="contactChoice1">False</label>
 		<input class = "submit" type = "submit" value = "Generate" />
 		{% endif %}
 		{% if image3 %}
 				<img src="{{ image3 }}" alt="Image 01" height="200" width="200"/></label><br/>
-				<p> Genome: {{ genome3 }}</p>
+				<p style = 'word-break: break-all;'> Genome: {{ genome3 }}</p>
 				<p style="font-size:15px;"> Function: {{ function3 }}</p>
 		{% endif %}
 	</div>

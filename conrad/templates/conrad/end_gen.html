@@ -5,43 +5,86 @@
 
 {% block content %}
 
+
+<style>
+{% if is_mobile %}
+
+.submit {
+	font-size:50px;
+	padding:10px;
+}
+
+ul {
+    text-align: left;
+    margin: auto;
+    width: 80%;
+    font-size:35px;
+}
+{% else %}
+
+.home-container {
+	width:500px;
+	margin:auto;
+}
+
+.home-p {
+	max-width: 500px;
+}
+
+ul {
+    text-align: left;
+    margin: auto;
+    width: 50%;
+}
+{% endif %}
+
+</style>
+
 <div class="top-container">
 
 <h1> Generation Complete </h1>
-
-
-<div class="home-main-container">
-
-<div class="home-container" style="width:1000;">
-	<img src="{{ top_image.image500.url }}" alt=Local Genetic Art Population" height="500" /></label>
-
-	<div class = "home-p" style="max-width: 500px;">
-	<h3>You've Just Completed Generation {{ generation }}!</h3>
-	<p> Your votes on the last generation are being used to generate 30 new Artists.</p>
-	<p> The higher the score an Artist gets, the more 'fitness' it has, and therefore the more likely it is to reproduce with other Artists.</p>
-	<p> Some stats about your last generation: </p>
-	<ul> 
-		<li>Generation Completed: {{ generation }}</li>
-		<li>Top Artist: {{ top_image}} (left)</li>
-		<li>Average Fitness: {{ fitness }}/10 </li>
-		<li>Genetic Diveristy: {{ diversity }}%</li>
-	</ul>
-	</p>
-	<p> When you're ready to move on to the next generation click below</p>
-
-	<div class = "flex-container" style = "margin-top:24px;">
-	<a class = "btn" style = "position:relative; left:10%; font-size:24px;" href = "{%url 'conrad:local' population %}" style = "font-size:25; color:#fff">Start Generation 
-		 <script>
-			c = 1 + {{ generation }};
-			document.write(c) 
-		</script></a>
-	</div>
-	</div>
-</div>
 </div>
 
+<div class = "flex-wrap-container">
+	<div class="home-main-container">
+		<div class="home-container"">
+			<div class="home-p">
+				<h3>You've Just Completed Generation {{ generation }}!</h3>
+				<p> Your votes on the last generation are being used to generate 30 new Artists.</p>
+				<p> The higher the score an Artist gets, the more 'fitness' it has, and therefore the more likely it is to reproduce with other Artists.</p>
+				<p> Some stats about your last generation: </p>
+				<ul> 
+					<li>Generation Completed: {{ generation }}</li>
+					<li>Top Artist: {{ top_image}}</li>
+					<li>Average Fitness: {{ fitness }}/10 </li>
+					<li>Genetic Diveristy: {{ diversity }}%</li>
+				</ul>
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="home-main-container">
+		<div class="home-container"">			
+			<img src="{{ top_image.image500.url }}" alt=Local Genetic Art Population" height="500" /></label>
+		</div>
+	</div>
+</div>
+
+<p> When you're ready to move on to the next generation click below</p>
 
 
+<div style = "margin:34px;">
+	<a class = "submit" 
+	style = "position:relative; 
+	{% if not is_mobile %}
+	font-size:24px;
+	{% endif %}" 
+	href = "{%url 'conrad:local' population %}" style = "font-size:25; color:#fff">Start Generation 
+	 <script>
+		c = 1 + {{ generation }};
+		document.write(c) 
+	</script></a>
+</div>
 
 {% endblock %}
 

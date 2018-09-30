@@ -10,21 +10,24 @@
 
 <h1> Data </h1>
 
+<div class = "content-container">
 <p>
 Here you can download the full population of anonymised data.</p>
 </div>
+</div>
 
-{% if request.user %}
+{% if request.user.username %}
 
-	{% if request.session.guest %}
-	<p> Please <a href = "{% url 'conrad:login' %}">Create an Account</a>to download the data</p>
+	{% if request.session.guest%}
+	<p> Please <a href = "/accounts/login">Create an Account</a> to download the data</p>
 
 	{% else %}
-	<p><a href = "{% url 'conrad:data_download' %}">Download the Data</a></p>
+	</br>
+	<p><a href = "{% url 'conrad:data_download' %}" class = 'submit'>Download the Data</a></p>
 	{% endif %}
 
 {% else %}
-<p> Please <a href = "{%url 'conrad:login' %}">Create an Account</a>to download the data</p>
+<p> Please <a href = "/accounts/login">Create an Account</a> to download the data</p>
 {% endif %}
 
 {% endblock %}

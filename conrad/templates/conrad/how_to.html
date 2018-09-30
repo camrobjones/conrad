@@ -5,30 +5,67 @@
 
 {% block content %}
 
+<style>
+{% if is_mobile %}
+img {
+	height:800px;
+	width:800px;
+}
+
+.submit {
+	font-size:50px;
+	padding:10px;
+}
+{% else %}
+
+.home-container {
+	width:500px;
+	margin:auto;
+}
+
+.home-p {
+	max-width: 500px;
+}
+{% endif %}
+</style>
+
 <div class="top-container">
 
+{% if newpop %}
 <h1> New Population </h1>
+{% endif %}
+</div>
 
+<div class = 'flex-wrap-container'>
+	{% if newpop %}
 
+	<div class="home-main-container">
+		<div class="home-container"">
+			<div class="home-p">
+				<h3><a href = "{% url 'conrad:userhome' %}">You've Just Created a New Population</a></h3>
+
+				<p> A brand new population of 30 artists is being created.</p>
+				<p> Each artist will have a genome, which they use to create an image. They've been generated totally at random - so some of the images they create might be gorgeous already through pure luck - but some of them might be horrible or just plain black!</p>
+				<p> Your job is to rate the images out of 5 stars. Once you've finished the generation, the algorithm will create a brand new generation based on your choices</p>
+				<p> When you're ready, click below to get started</p>
+			</div>
+		</div>
+	</div>
+	{% endif %}
 <div class="home-main-container">
 
-<div class="home-container" style="width:1000;">
+<div class="home-container" >
 	<img src="{% static 'conrad/how_to.png' %}" alt=Local Genetic Art Population" height="500" /></label>
-
-	<div class = "home-p" style="max-width: 500px;">
-	<h3><a href = "{% url 'conrad:userhome' %}">You've Just Created a New Population</a></h3>
-
-	<p> A brand new population of 50 artists is being created.</p>
-	<p> Each artist will have a genome, which they use to create an image. They've been generated totally at random - so some of the images they create might be gorgeous already through pure luck - but some of them might be horrible or just plain black!</p>
-	<p> Your job is to rate the images  between 1 (bad) and 10 (good). Once you've finished the generation, the algorithm will create a brand new generation based on your choices</p>
-	<p> When you're ready, click below to get started</p>
-
-	<div class = "flex-container" style = "margin-top:30px;">
-	<a class = "btn" style = "position:relative; left:30%; font-size:30px;" href = "{%url 'conrad:local' population %}" style = "font-size:30; color:#fff">Get Started</a>
-	<div>
-	</div>
 </div>
 </div>
+
+</div>
+
+{% if next %}
+<div style = "margin:30px;">
+	<a class = "submit" style = "position:relative; margin:auto; font-size:30px;" href = "{{next}}" style = "font-size:30; color:#fff">Get Started</a>
+</div>
+{% endif %}
 
 
 

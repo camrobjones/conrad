@@ -3,6 +3,15 @@
 
 {% block content %}
 
+{% if is_mobile %}
+<style>
+img {
+    height: 200;
+    width: 200;
+}
+</style>
+{% endif %}
+
 {% if request.session.guest %}
 <p> You're playing as a guest. <a href = '/accounts/signup/'> Sign Up </a> or <a href = '/accounts/login/'> Login</a> to save your creations.</p>
 {% endif %}
@@ -25,12 +34,12 @@
 		<tr  align = 'center'>
 			
 			<td><a href="{% url 'conrad:local' population.0 %}"><h2>{{ population.0 }}</h2></a></td>
-			<td><img src="{{ population.1 }}" alt="Image 01" height="200" width="200"/></td>
+			<td><a href="{% url 'conrad:local' population.0 %}"><img src="{{ population.1 }}" alt="Image 01" height="200" width="200"/></a></td>
 			<td>{{ population.2 }}</td>
 			<td>{{ population.3 }}</td>
 			<td>{{ population.4 }}%</td>
 			<td>{{ population.5 }}</td>
-			<td>{{ population.6 }}</td>
+			<td>{{ population.6 | date:"SHORT_DATE_FORMAT"}}</td>
 			
 		</tr>
 	{% endfor %}

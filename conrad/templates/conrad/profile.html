@@ -5,6 +5,22 @@
 
 {% block content %}
 
+
+<style>
+{% if is_mobile %}
+
+.submit {
+    font-size: 30px;
+    height: 35px;
+    margin-top: 12px;
+}
+{% else %}
+.home-container {
+	justify-content: center
+}
+{% endif %}
+</style>
+
 <div class="top-container">
 
 <h1> {{ request.user }}'s home </h1>
@@ -12,16 +28,17 @@
 </div>
 <div style = "margin-bottom: 20px;">
 <h3>Account Settings</h3>
-<a class="btn" style="position:absolute;" href = 'accounts/password_change'> Change your Password </a><br/>
-<br/>
-<a class="btn" style="position:absolute; margin-bottom: 20px;" href = 'accounts/logout'> Logout </a>
+<div style="display: flex; width:80%; margin:auto">
+<a class="submit" style="float:none; margin:auto" href = '/accounts/password_change'> Change your Password </a>
+<a class="submit" style="float:none; margin:auto;" href = '/accounts/logout'> Logout </a>
+</div>
 </div>
 
 <div class="home-main-container">
 <h2><a href = "{% url 'conrad:userhome' %}">Resume your Local Populations</a></h2><br/>
 
 <div class="home-container">
-	<img src="{% static 'conrad/local.PNG' %}" alt=Local Genetic Art Population" height="200" width="200"/></label>
+	<img src="{% static 'conrad/local.PNG' %}" alt=Local Genetic Art Population" height="300" width="300"/></label>
 	<h3><a href = "{% url 'conrad:userhome' %}"></p>
 	</div>
 </div>
@@ -32,7 +49,7 @@
 <h2><a href = "{% url 'conrad:globalhome' %}">Join the Global Population</a></h2><br/>
 
 <div class="home-container">
-	<img src="{% static 'conrad/global.PNG' %}" alt="Global Genetic Art Population" height="200" width="200"/></label>
+	<img src="{% static 'conrad/global.PNG' %}" alt="Global Genetic Art Population" height="300" width="300"/></label>
 </div>
 </div>
 

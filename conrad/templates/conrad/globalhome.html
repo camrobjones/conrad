@@ -4,11 +4,13 @@
 {% block content %}
 
 {% if pop_data %}
+<div class = "top-container">
 <h2> The Global Population </h2>
 
 <p> There is only one global population, made up of 200 Artists which anybody can vote on.
 
-	Unlike local populations, the global populations do not run through generations one at a time, destroying and creating new Artists at distinct intervals. Artists are created and destroyed in real time as you vote on them.</p>
+	Unlike local populations, the global populations do not run through generations one at a time. Artists are created and destroyed in real time, as you vote on them.</p>
+</div>
 
 
 {% if request.session.guest %}
@@ -16,30 +18,34 @@
 {% endif %}
 
 
-<div class="home-main-container">
-		<h2><a href="{% url 'conrad:global_game' 0 %}">Global Population</a></h2>
+<div class="top-container">
 
-<div class="home-container">
-<img src="{{ pop_data.0 }}" alt="Global Genetic Art Population - Top Image" height="300" width="300"/></label>
+<div class="home-container" style = 'margin-bottom: : 30px'>
+<a href = "{%url 'conrad:global_game' 0 %}"><img src="{{ pop_data.0 }}" alt="Global Genetic Art Population - Top Image" height="300" width="300"/></a>
 
 	<div class = "home-p">
 		<p> 
 		The global population has been evolving since the start of the site and everyone has access to it.</p>
-		<p> Current stats:</p>
-		<ul>
+
+	
+		<p style = 'text-align: left;'> Current stats:</p>
+
+		<ul style = 'text-align: left'>
 			<li>Max Generation: {{ pop_data.1 }}</li>
 			<li>Average Fitness: {{ pop_data.2 }}</li>
 			<li>Genetic Diversity: {{ pop_data.3 }}%</li>
 			<li>Global Users: {{ pop_data.4 }}</li>
 		</ul>
 
-	<div class = "flex-container" style = "margin-top:24px;">
-	<a class = "btn" style = "position:relative; left:10%; font-size:24px; font-size:24; color:#fff" href = "{%url 'conrad:global_game' 0 %}">Start Evolving</a>
+	<div class = "flex-container" style = "margin-top:24px; float:left;">
+	<a class = "submit" style = "position:relative; left:10%; font-size:24px; font-size:24; color:#fff
+	{% if is_mobile %}    width: 150px;
+    height: 60px;
+    margin-top: 10; margin-bottom: 100px; font-size:44px; margin-left: 80px;{% endif %}" href = "{%url 'conrad:global_game' 0 %}">Start Evolving</a>
 	</div>
 	</div>
 </div>
 </div>
-
 
 		
 		

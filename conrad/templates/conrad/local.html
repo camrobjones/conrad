@@ -1,9 +1,37 @@
-
 {% extends 'base.html' %}
 
 {% block content %}
+
+{% load static %}
+
+<style>
+{% if is_mobile %}
+
+.submit {
+    font-size: 30px;
+    height: 35px;
+    margin-top: 12px;
+}
+
+{% else %}
+
+.submit {
+    font-size: 15px;
+    height: 18px;
+    margin-top: 5px;
+    padding: 3px;
+}
+
+.rate {
+	margin-left: -25px;
+}
+
+{% endif %}
+</style>
+
+
 <h2> Local Genetic Art Population </h2>
-<h3> User: {{ username }} &nbsp Population: {{ population }}  &nbsp Generation: {{ top_images.1.generation }} &nbsp Showing members: {{ top_images.0.member }} - {{ top_images.4.member }}</h3>
+<h3> User: {{ username }} &nbsp Population: {{ population }}  &nbsp Generation: {{ top_images.1.generation }} &nbsp Members: {{ top_images.0.member }} - {{ top_images.4.member }} / 30</h3>
 
 
 {% if request.session.guest %}
@@ -14,21 +42,41 @@
 
 {% if top_images %}
 
-{% load static %}
-
-<link rel="stylesheet" type = "text/css" href = "{% static 'conrad/style.css' %}" />
-
 <div class="form-container">
 <form action = "{% url 'conrad:local' population %}" method = "post">
 {% csrf_token %}
 {% for artist in top_images %}
 	<div id="display">
+		<input type = "hidden" name = "artist[]" value = "{{ artist.id }}" />
 		<img src="{{ artist.image.url }}" alt="Image 01" height="200" width="200"/></label><br/>
 		<p>Artist: {{ artist }}</p>
-		<input type = "number" min = "1" max = "10" name = "score[]" id = "artist{{ forloop.counter }}" value = "1" required=True/>
-		<input type = "hidden" name = "artist[]" value = "{{ artist.id }}" />
-		<label for="artist{{ forloop.counter }}">
-			<a class = "btn" href = '/conrad/inspect/{{ artist.id }}'>Inspect</a>
+		<div style = 'display:flex'>
+		<fieldset class="rate">
+		    <input type="radio" id="rating10{{ artist.id }}" name="score[{{forloop.counter}}]" value="10" required = True/>
+		    <label for="rating10{{ artist.id }}" title="5 stars"></label>
+		    <input type="radio" id="rating9{{ artist.id }}" name="score[{{forloop.counter}}]" value="9" required = True/>
+		    <label class="half" for="rating9{{ artist.id }}" title="4 1/2 stars"></label>
+		    <input type="radio" id="rating8{{ artist.id }}" name="score[{{forloop.counter}}]" value="8" required = True/>
+		    <label for="rating8{{ artist.id }}" title="4 stars"></label>
+		    <input type="radio" id="rating7{{ artist.id }}" name="score[{{forloop.counter}}]" value="7" required = True/>
+		    <label class="half" for="rating7{{ artist.id }}" title="3 1/2 stars"></label>
+		    <input type="radio" id="rating6{{ artist.id }}" name="score[{{forloop.counter}}]" value="6" required = True/>
+		    <label for="rating6{{ artist.id }}" title="3 stars"></label>
+		    <input type="radio" id="rating5{{ artist.id }}" name="score[{{forloop.counter}}]" value="5" required = True/>
+		    <label class="half" for="rating5{{ artist.id }}" title="2 1/2 stars"></label>
+		    <input type="radio" id="rating4{{ artist.id }}" name="score[{{forloop.counter}}]" value="4" required = True/>
+		    <label for="rating4{{ artist.id }}" title="2 stars"></label>
+		    <input type="radio" id="rating3{{ artist.id }}" name="score[{{forloop.counter}}]" value="3" required = True/>
+		    <label class="half" for="rating3{{ artist.id }}" title="1 1/2 stars"></label>
+		    <input type="radio" id="rating2{{ artist.id }}" name="score[{{forloop.counter}}]" value="2" required = True/>
+		    <label for="rating2{{ artist.id }}" title="1 star"></label>
+		    <input type="radio" id="rating1{{ artist.id }}" name="score[{{forloop.counter}}]" value="1" required = True/>
+		    <label class="half" for="rating1{{ artist.id }}" title="1/2 star"></label>
+		    <input class = "no-star" type="radio" id="rating0{{ artist.id }}" name="score[{{forloop.counter}}]" value="0" required = True/>
+		    <label class = 'no-star' for="rating0" title="No star"></label>
+		</fieldset>
+		<a class = "submit"href = '/conrad/inspect/{{ artist.id }}'>Inspect</a>
+	</div>
 	</div>
 {% endfor %}
 <br/>
@@ -36,12 +84,29 @@
 <div id="vote">
 &nbsp;
 <br/>
-<input class = "submit" type = "submit" value = "Vote" />
+
+
+
+
+<input class = "submit" 
+{% if is_mobile %}
+
+    style = 'font-size: 50px;
+    		height:60px;
+    		margin-bottom:40px;'
+{% else %}
+    style = 'font-size: 30px;
+		height:40px;
+		margin-bottom:40px;'
+
+{% endif %}
+type = "submit" value = "Vote" />
 </div>
 </form>
 
 {% endif %}
 
-{% endblock %}
 
+
+{% endblock %}
 

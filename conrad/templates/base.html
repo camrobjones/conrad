@@ -37,7 +37,9 @@
 			</div>
 			<div class="nav-element">
 				<a href = '/conrad/'>Conrad</a>
-				<div class="dropdown-content">
+				<div class="dropdown-content" 
+				{% if not is_mobile %} style = 'margin-left: -69px;'
+				{% endif %}>
 					<div class="dropdown-element">
 						<a href = '/conrad/about'>About Conrad</a>
 					</div>
@@ -54,7 +56,9 @@
 			</div>
 			<div class="nav-element">
 				<a href = '/conrad/learn/'>Learn</a>
-				<div class="dropdown-content">
+				<div class="dropdown-content" div class="dropdown-content" 
+				{% if not is_mobile %} style = 'margin-left: -62px;'
+				{% endif %}>
 					<div class="dropdown-element">
 						<a href = '/conrad/sandbox'>Conrad Sandbox</a>
 					</div>
@@ -86,15 +90,17 @@
 			</div>
 		</nav>
 		<link rel="stylesheet" type = "text/css" href = "{% static 'conrad/style.css' %}" />
+		{% if is_mobile %}
+		<link rel="stylesheet" type = "text/css" href = "{% static 'conrad/mobile-style.css' %}" />
+		{% endif %}
 	</head>
 	<div class=endhead>
 		&nbsp
-	<div>
+	</div>
 	<body>
 		
 			{% block content %}
 			{% endblock %}
-		</div>
 	</body>
 </html>
 	

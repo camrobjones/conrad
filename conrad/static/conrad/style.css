@@ -1,3 +1,74 @@
+/*Rating Star CSS*/
+
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+body {
+    text-align: center;
+    background: #111;
+}
+h1 {
+    font-size: 2em; 
+    margin-bottom: .5rem;
+}
+
+a {
+	text-decoration: none;
+    font-weight: bold;
+}
+
+html {
+	overflow-x: hidden;
+}
+
+/* Ratings widget */
+.rate {
+    display: inline-block;
+    border: 0;
+}
+/* Hide radio */
+.rate > input {
+    display: none;
+}
+/* Order correctly by floating highest to the right */
+.rate > label {
+    float: right;
+}
+/* The star of the show */
+.rate > label:before {
+    display: inline-block;
+    font-size: 1.1rem;
+    padding: .3rem .2rem;
+    margin: 0;
+    cursor: pointer;
+    font-family: FontAwesome;
+    content: "\f005 "; /* full star */
+}
+/* Zero stars rating */
+.rate > label:last-child:before {
+    content: "\f006 ";  empty star outline 
+}
+/* Half star trick */
+.rate .half:before {
+    content: "\f089 "; /* half star no outline */
+    position: absolute;
+    padding-right: 0;
+}
+
+.no-star {
+	opacity: 0
+}
+/* Click + hover color */
+.rate input:checked ~ label, /* color current and previous stars on checked */
+.rate label:hover, .rate label:hover ~ label { color: #73B100;} /* color previous stars on hover */
+
+.no-star:checked ~ label {opacity: 1;}
+
+/* Hover highlights */
+.rate input:checked + .rate label:hover, .rate input:checked ~ label:hover, /* highlight current and previous stars */
+.rate input:checked ~  label:hover ~ label, /* highlight previous selected stars for new rating */
+.rate label:hover ~ input:checked ~ label /* highlight previous selected stars */ { color: #A6E72D;} 
+
+/*Rating Star CSS*/
+
 div {
 	float: top;
 
@@ -56,8 +127,6 @@ a.btn {
     margin-top: -5px;
 }
 
-
-
 h1 {
 	color: #fff;
 	font-family: "Helvetica", sans-serif;
@@ -100,6 +169,13 @@ body {
 	display: flex;
 	width:100%;
 
+}
+
+.flex-wrap-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .header-container {
@@ -216,7 +292,8 @@ th {
 
 div#display {
     float:left;
-    margin:10px;
+    margin:10px auto;
+
 }
 
 div#index {
@@ -225,14 +302,14 @@ div#index {
 
 .form-container {
 	display: flex;
+	justify-content: space-evenly;
 }
-
-
 
 .submit {
 	margin: 10px;
 	padding: 10px;
 	font-size: 20px;
+	cursor: pointer;
 }
 
 /* conrad home */
@@ -247,14 +324,15 @@ h2 a {
 
 h3 a {
 	color:#fff;
+	text-decoration: underline;
 }
 
 .home-main-container {
-	float:left;
+	margin: auto;
+    width: 600px;
 }
 
 .home-container {
-	float:left;
 	display:flex;
 	width: 600px
 }
@@ -273,10 +351,6 @@ h3 a {
 }
 
 .nav-element:hover {
-	background-color: #45a83c;
-}
-
-nav a:hover {
 	background-color: #45a83c;
 }
 
@@ -308,18 +382,35 @@ nav a:hover {
 .wrap {
   display: flex;
   overflow: hidden;
-  width: 100%;
+  width: 90%;
+  max-width: 1000px;
+  min-width: 680px;
+  margin:auto;
   padding-top:20px;
+  justify-content: space-between;
 }
 
 .left {
   text-align: left;
-  flex-basis: 80%;
+  float:left;
+  width: 45%;
+  margin-right:5%;
+  word-break: break-all;
 }
 
 .right {
   text-align: right;
-   flex-basis: 80%;
+  float:right;
+  width: 45%;
+  margin-left:5%;
+  word-break: break-all;
+}
+
+.centre {
+  text-align: center;
+  width: 45%;
+  margin-left:25%;
+  margin-right:25%;
 }
 
 .indexbtn {
@@ -339,14 +430,15 @@ nav a:hover {
 .gallery-nav {
 	display: flex;
 	width: 100%;
+	justify-content: space-between;
 }
 
 .gallery-element {
 	display: block;
 	float: left;
 	background-color: #45a83c;
-	margin-right:20px;
 	padding: 5px;
+	min-width: 175px;
 }
 
 .gallery-element:hover {
@@ -365,6 +457,7 @@ nav a:hover {
 	position:relative;
 	display: inline-block;
 	padding: none;
+	min-width: 180px;
 }
 
 .gallery-dropdown-content {
@@ -375,6 +468,7 @@ nav a:hover {
 	padding: 2px;
 	margin-top: 4px;
 	margin-left:-4px;
+	min-width: 180px;
 }
 
 
@@ -384,6 +478,12 @@ nav a:hover {
 	margin: none;
 	border: 1px solid #3d3c3c;
 	padding: 2px;
+}
+
+.gallery-element a {
+	font-size: 18px;
+	font-family: "Helvetica", sans-serif;
+	text-decoration: none
 }
 	
 .gallery-dropdown-element a {
@@ -404,15 +504,52 @@ nav a:hover {
 }
 
 .child-flex-container {
-    display: block;
-    float:left;
+	justify-content: space-evenly;
+    flex-wrap: wrap;
+    display: flex;
     margin-right: -.25em;
     top: 1.25em;
     max-width: 100%;
+    width:100%;
     word-wrap: break-word;
+    justify-content: space-between;
 }
 
 .child-container {
 	display:block;
-	float:left;
+	
+}
+
+
+.top-container {
+    width: 50%;
+	margin: auto;
+}
+
+.content-container {
+    margin-top:40px;
+    max-width:80%;
+    width:80%;
+    margin-right: 10%;
+    margin-left:10%;
+}
+
+.submit {
+    /* margin: 10px; */
+    /* font-size: 50px; */
+    font-family: Consolas,"courier new";
+    color: #fff;
+    background: #008F11;
+    /* padding: 2px; */
+    border-radius: 4px;
+    border-color: fff;
+    border-style: solid;
+    border-width: 1px;
+    /* margin-top: -5px; */
+    /* padding-left: 10px; */
+    /* padding-right: 10px; */
+}
+
+.centred {
+	margin:auto;
 }

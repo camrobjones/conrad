@@ -3,71 +3,172 @@
 
 {% block content %}
 
+{% if is_mobile %}
+<style>
+img {
+    height: 300;
+    width: 300;
+}
+
+.rate {
+	display:block;
+	margin-left: -40px;
+}
+
+.rate > label:before {
+    font-size: 2.5rem;
+    padding: .3rem .2rem;
+    margin: 0;
+    cursor: pointer;
+    font-family: FontAwesome;
+    content: "\f005 "; /* full star */
+}
+
+.rate .half:before {
+    content: "\f089 ";
+    position: absolute;
+    padding-right: 0;
+    font-size: 2.5rem;
+}
+
+.no-star {
+	/*opacity: 0*/
+}
+
+p {
+    font-size: 20px;
+}
+
+.submit {
+    float: left;
+    height: 40px;
+    font-size: 30px;
+    padding-top: 2px;
+    margin-left:30%;
+}
+
+.gallery-inspect {
+	margin-top:20px
+}
+</style>
+{% else %}
+<style>
+.rate {
+	float:left;
+	margin-left:-5px;
+	padding-left:0;
+	margin-right:-10px;
+	padding-right:0;
+}
+
+.submit {
+    float: left;
+    height: 20px;
+    width: 60px;
+    font-size: 15px;
+    padding-top: 2px;
+    margin-left:20px;
+}
+
+.gallery-inspect {
+	margin-left:20px;
+	margin-top:20px
+}
+
+</style>
+{% endif %}
+
+<style>
+
+td p {
+	margin-left:20px;
+	margin-right:20px;
+}
+
+table {
+	margin:auto;
+}
+
+td {
+	text-align:center;
+}
+</style>
+
+
+
 <h1> Gallery </h1>
+
+<p> Below, the top images from all games are displayed.
+Users can then vote on how much they like each image.</p>
+		<div class = 'centred' style = 'width:90%; max-width:800px; min-width:680px; margin-top:40px;'>
 		<nav class="gallery-nav"> 
 			<div class="gallery-element">
-				<p>Sort</p>
+				<a href = '#'>Sort Order</a>
 				<div class="gallery-dropdown-content">
 					<div class="gallery-dropdown-element">
-						<a href = '/conrad/gallery/best/{{ time }}/{{ group }}/{{ index }}/'>Best</a>
+						<a href = '/conrad/gallery/best/{{ time }}/{{ group }}/0/'>Best</a>
 					</div>
 					<div class="gallery-dropdown-element">
-						<a href = '/conrad/gallery/average/{{ time }}/{{ group }}/{{ index }}/'>Average Fitness</a>
+						<a href = '/conrad/gallery/average/{{ time }}/{{ group }}/0/'>Average Fitness</a>
 					</div>
 					<div class="gallery-dropdown-element">
-						<a href = '/conrad/gallery/top/{{ time }}/{{ group }}/{{ index }}/'>Total Fitness</a>
+						<a href = '/conrad/gallery/top/{{ time }}/{{ group }}/0/'>Total Fitness</a>
 					</div>
 					<div class="gallery-dropdown-element">
-						<a href = '/conrad/gallery/recent/{{ time }}/{{ group }}/{{ index }}/'>Recent</a>
+						<a href = '/conrad/gallery/recent/{{ time }}/{{ group }}/0/'>Recent</a>
 					</div>
 				</div>
 			</div>
 			
 			<div class="gallery-element">
-				<p>Filter by Population Type</p>
+				<a href = '#'>Population Type</a>
 				<div class="gallery-dropdown-content">
 					<div class="gallery-dropdown-element">
-						<a href = '/conrad/gallery/{{ sort }}/{{ time }}/all/{{ index }}/'>All</a>
+						<a href = '/conrad/gallery/{{ sort }}/{{ time }}/all/0/'>All</a>
 					</div>
 					<div class="gallery-dropdown-element">
-						<a href = '/conrad/gallery/{{ sort }}/{{ time }}/local/{{ index }}/'>Local Games</a>
+						<a href = '/conrad/gallery/{{ sort }}/{{ time }}/local/0/'>Local Games</a>
 					</div>
 					<div class="gallery-dropdown-element">
-						<a href = '/conrad/gallery/{{ sort }}/{{ time }}/global/{{ index }}/'>Global Games</a>
+						<a href = '/conrad/gallery/{{ sort }}/{{ time }}/global/0/'>Global Games</a>
 					</div>
+					{% if request.user.username %}
+					<div class="gallery-dropdown-element">
+						<a href = '/conrad/gallery/{{ sort }}/{{ time }}/{{request.user.username}}/0/'>My Populations</a>
+					</div>
+					{% endif %}
 				</div>
 			</div>
 			
 			<div class="gallery-element">
-				<p>Filter by Time</p>
+				<a href = '#'>Time</a>
 				<div class="gallery-dropdown-content">
 					<div class="gallery-dropdown-element">
-						<a href = '/conrad/gallery/{{ sort }}/day/{{ group }}/{{ index }}/'>Last Day</a>
+						<a href = '/conrad/gallery/{{ sort }}/day/{{ group }}/0/'>Last Day</a>
 					</div>
 					<div class="gallery-dropdown-element">
-						<a href = '/conrad/gallery/{{ sort }}/week/{{ group }}/{{ index }}/'>Last Week</a>
+						<a href = '/conrad/gallery/{{ sort }}/week/{{ group }}/0/'>Last Week</a>
 					</div>
 					<div class="gallery-dropdown-element">
-						<a href = '/conrad/gallery/{{ sort }}/month/{{ group }}/{{ index }}/'>Last Month</a>
+						<a href = '/conrad/gallery/{{ sort }}/month/{{ group }}/0/'>Last Month</a>
 					</div>
 					<div class="gallery-dropdown-element">
-						<a href = '/conrad/gallery/{{ sort }}/year/{{ group }}/{{ index }}/'>Last Year</a>
+						<a href = '/conrad/gallery/{{ sort }}/year/{{ group }}/0/'>Last Year</a>
 					</div>
 					<div class="gallery-dropdown-element">
-						<a href = '/conrad/gallery/{{ sort }}/alltime/{{ group }}/{{ index }}/'>All Time</a>
+						<a href = '/conrad/gallery/{{ sort }}/alltime/{{ group }}/0/'>All Time</a>
 					</div>
 				</div>
 			</div>
 		</nav>
-
-<p> This is where the top images from all games are displayed.
-Users can then vote on how much they like each image. The ranking of images is determined by both their mean vote and the number of votes.</p>
+	</div>
+	</br>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 {% if top_images %}
 
-<table>
+<table style = 'width:90%; max-width: 1000px; min-width:680px;'>
 	<tr>
 		<th>No.</th>
 		<th>Image</th>
@@ -78,43 +179,67 @@ Users can then vote on how much they like each image. The ranking of images is d
 	{% csrf_token %}
 		<tr>
 			<td>
-				<script>
+				<p><script>
 					c = {{ forloop.counter }} + {{index}};
 					document.write(c) 
-				</script>
+				</script></p>
 			</td>
 			<td><img src="{{ artist.image.url }}" alt="artist{{ forloop.counter }}" height="200" width="200"/></label><br/></td>
 			<td>
 			<input type = "hidden" name = "artist" id = "artist{{ forloop.counter }}" value = "{{ artist.id }}" />
 			<label for="artist{{ forloop.counter }}">
-			<p>	Creator:   {{ artist.user }}	 <br/>
+			<p style = "word-break: break-all;">	Creator:   {{ artist.user }}	 <br/>
 				Population: {{ artist.population}} {% if artist.global_pop %} (Global) {% endif %} <br/>
 				Generation: {{ artist.generation }}<br/>
 				Total Fitness:  {{ artist.gallery_fitness }} <br/>
 				No. Votes:	{{ artist.seen }} <br/>
-				Avg. Fitness {{ artist.mean_fitness }} <br/>
-				Created:  {{ artist.created }} <br/>
-				Genome:   {{ artist.genome }} </p/>
+				Avg. Fitness {{ artist.mean_fitness | floatformat }} <br/>
+				Created:  {{ artist.created | date:"SHORT_DATE_FORMAT" }} <br/></p>
 			</td>
 			<td>
+
 				{% if request.user.is_authenticated %}
 					{% if forloop.counter in voted %}
 					<p> You've Voted Already</p>
 					{% else %}
-					<input type = "number" min = "1" max = "10" name = "score" id = "artist{{ forloop.counter }}" value = "1" />
-					
-					<input type = "submit" value = "Vote" /><br/>
+					<div style = 'display:inline-block'>
+					<fieldset class="rate">
+					    <input type="radio" id="rating10{{ artist.id }}" name="score" value="10" required = True/>
+					    <label for="rating10{{ artist.id }}" title="5 stars"></label>
+					    <input type="radio" id="rating9{{ artist.id }}" name="score" value="9" required = True/>
+					    <label class="half" for="rating9{{ artist.id }}" title="4 1/2 stars"></label>
+					    <input type="radio" id="rating8{{ artist.id }}" name="score" value="8" required = True/>
+					    <label for="rating8{{ artist.id }}" title="4 stars"></label>
+					    <input type="radio" id="rating7{{ artist.id }}" name="score" value="7" required = True/>
+					    <label class="half" for="rating7{{ artist.id }}" title="3 1/2 stars"></label>
+					    <input type="radio" id="rating6{{ artist.id }}" name="score" value="6" required = True/>
+					    <label for="rating6{{ artist.id }}" title="3 stars"></label>
+					    <input type="radio" id="rating5{{ artist.id }}" name="score" value="5" required = True/>
+					    <label class="half" for="rating5{{ artist.id }}" title="2 1/2 stars"></label>
+					    <input type="radio" id="rating4{{ artist.id }}" name="score" value="4" required = True/>
+					    <label for="rating4{{ artist.id }}" title="2 stars"></label>
+					    <input type="radio" id="rating3{{ artist.id }}" name="score" value="3" required = True/>
+					    <label class="half" for="rating3{{ artist.id }}" title="1 1/2 stars"></label>
+					    <input type="radio" id="rating2{{ artist.id }}" name="score" value="2" required = True/>
+					    <label for="rating2{{ artist.id }}" title="1 star"></label>
+					    <input type="radio" id="rating1{{ artist.id }}" name="score" value="1" required = True/>
+					    <label class="half" for="rating1{{ artist.id }}" title="1/2 star"></label>
+					    <input type="radio" id="rating0{{ artist.id }}" name="score" value="0" required = True/>
+					    <label class = "no-star" for="rating0" title="No star"></label>
+					</fieldset>
+								
+					<input type = "submit" value = "Vote" class = 'submit'/><br/>
 					{% endif %}
-				{% else %}
-				<p><a href = "{% url 'login'%}">Login</a> to Vote</p>
-				{% endif %}
-				<button><a href = '/conrad/inspect/{{ artist.id }}'>Inspect</a>
+				</div>
+					{% else %}
+					<p><a href = "{% url 'login'%}">Login</a> to Vote</p>
+					{% endif %}
+					<div>
+					<button class = 'gallery-inspect'><a href = '/conrad/inspect/{{ artist.id }}'>Inspect</a></button>
+				</div>
 				
 			</td>
 
-			
-		
-	
 	</form>
 	{% endfor %}
 	
@@ -125,6 +250,11 @@ Users can then vote on how much they like each image. The ranking of images is d
 <div class="wrap">
 	<div class = "left" align = "left"><button class="indexbtn"><a href = '/conrad/gallery/{{ sort }}/{{ time }}/{{group}}/{{ pindex }}/'>Previous 10</a></button></div>
 	<div id = "right" align = "right"><button class="indexbtn"><a href = '/conrad/gallery/{{ sort }}/{{ time }}/{{group}}/{{ nindex }}/'>Next 10</a></button></div>
+</div>
+
+<div class="wrap">
+	<div class = "left" align = "left"><button class="indexbtn"><a href = '/conrad/gallery/{{ sort }}/{{ time }}/{{group}}/0/'>First</a></button></div>
+	<div id = "right" align = "right"><button class="indexbtn"><a href = '/conrad/gallery/{{ sort }}/{{ time }}/{{group}}/{{ lindex }}/'>Last</a></button></div>
 </div>
 
 {% endblock %}

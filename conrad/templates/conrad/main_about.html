@@ -5,34 +5,52 @@
 
 {% load static %}
 
+<style>
+{% if is_mobile %}
+
+{% else %}
+p {
+	text-align:left;
+}
+
+img {
+	margin-right: 20px;
+}
+
+{% endif %}
+
+
+</style>
+
 <h1> About </h1>
 
 <div style="width:100%; display:flex;">
-<div class="home-container" style="width:800px;">
-	<img src="{% static 'conrad/about.png' %}" alt="Conrad Genetic Art Algorithm" height="300" width="300"/></label>
+<div class="home-container" style="flex-wrap:wrap; margin-left:10%; margin-right: 10%; width:100%">
+	{% if is_mobile %}
+	<!-- <div class = "home-p" style="padding-top: 0px; margin-top:-10px;"> -->
+		<img src="{% static 'conrad/about.png' %}" alt="Conrad Genetic Art Algorithm" height="300" width="300"/>
+	<p>
+	{% else %}
+	<p>
+	<!-- <div class = "home-p" style="padding-top: 0px; margin-top:-10px;"> -->
+		<img src="{% static 'conrad/about.png' %}" align = left alt="Conrad Genetic Art Algorithm" height="300" width="300"/>
+	{% endif %}
+		
+Genetic algorithms (GAs) are a form of Machine Leanrning inspired by arguably the most creative force in the universe - evolution by natural selection. </br></br>
 
-	<div class = "home-p" style="max-width:500px;padding-top: 0px; margin-top:-10px;">
-
-		<p>Genetic Algorithms (GA's) are a form of Machine Leanrning inspired by arguably the most creative force in the universe - evolution by natural selection.</p>
-
-		<p>genetic-algorithms.com is a free and open-source web tool for creating and learning about Genetic Algorithms.</p>
+genetic-algorithms.com is a free and open-source web tool for creating and learning about genetic algorithms.</br></br>
 
 
-<p>Instead of programming outcomes directly, or programming most of a solution and using machine learning to optimize a handful of parameters, GAs allow the learning process a high degree of control over your programme.</p>
+Instead of programming outcomes directly, or programming most of a solution and using machine learning to optimize a handful of parameters, GAs allow the learning process a high degree of control over your programme.</br></br>
 
-<p>You just have to find a way of encoding your programme as a 'genome' - often using 1s and 0s (here we use As, Ts, Cs, and Gs) and create a population of 'agents' who attempt to perform some task using different encodings of your programme.</p>
+You just have to find a way of encoding your programme as a 'genome' - often using 1s and 0s (here we use As, Ts, Cs, and Gs) and create a population of 'agents' who attempt to perform some task using different encodings of your programme.</br></br>
 
-	</div>
-</div>
-</div>
 
-<div style="width:800px;">
+Next you need to define a 'fitness function' to score the performance of your agents. The agents reproduce (and recombine their genomes with other agents) at a rate proportionate to their success at the task. Thus - in a slightly roundabout way - the population gets better and better at performing the task.</br></br>
 
-<p>Next you need to define a 'fitness function' to score the performance of your agents. The agents reproduce (and recombine their genomes with other agents) at a rate proportionate to their success at the task. Thus - in a slightly roundabout way - the population gets better and better at performing the task.</p>
+The idea behind this site is not only to provide resources on GAs, but also to <del>gather training data</del> make interacting with GAs fun, by allowing users to collaboratively perform the role of a fitness function, deciding the quality of GA output and provide fitness ratings themselves.</br></br>
 
-<p>The idea behind this site is not only to provide resources on GAs, but also to <del>harvest training data</del> make interacting with GAs fun, by allowing users to collaboratively perform the role of a fitness function, deciding the quality of GA output and provide fitness ratings themselves.</p>
-
-<p>At the moment the site only has one GA - <a href = '/conrad/'>Conrad</a> - which produces images based on a string of 'ATCG's. But you can find out more about Genetic Algorithms generally on our <a href = '/conrad/learn/'>Learn</a> page, and specifically our <a href = '/conrad/resources'>Resources</a> page.</p>
+At the moment the site only has one GA - <a href = '/conrad/'>Conrad</a> - which produces images based on a string of 'ATCG's. But you can find out more about Genetic Algorithms generally on our <a href = '/conrad/learn/'>Learn</a> page, and specifically our <a href = '/conrad/resources'>Resources</a> page.</br></br>
 
 </div>
 

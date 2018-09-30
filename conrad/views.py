@@ -29,13 +29,14 @@ from django.shortcuts import render, redirect
 
 from django.core.files.storage import default_storage
 
-
+from django.urls import reverse
 
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
 from django.utils.translation import ugettext as _
+
 
 
 def home(request):
@@ -74,8 +75,10 @@ def contact(request):
 	return render(request, 'conrad/contact.html')
 
 
-def howto(request, population):
-	return render(request, 'conrad/how_to.html', {'population':population})
+def howto(request):
+	next = request.GET.get('next')
+	newpop = request.GET.get('newpop')
+	return render(request, 'conrad/how_to.html', {'next':next, 'newpop':newpop})
 
 def profile(request):
 	if not request.user.is_authenticated:
@@ -207,9 +210,18 @@ def local(request, population):
 		request.session.guest = True
 	if username == 'global':
 		return global_game(request, population)
+
+	for key in request.POST:
+	    print(key)
+	    value = request.POST[key]
+	    print(value)
 	try:
 		artists = request.POST.getlist('artist[]')
-		scores = request.POST.getlist('score[]')
+		scores = []
+		for i in range(1,6):
+			scores.append(request.POST.get('score[{}]'.format(i)))
+		print(scores)
+
 
 
 	except (KeyError, Artist.DoesNotExist):
@@ -226,7 +238,7 @@ def local(request, population):
 
 	if not Artist.objects.filter(population=population, user=username, global_pop=False):
 		conrad_utils.newpop(30, 30, population, username)
-		return howto(request, population)
+		return HttpResponseRedirect(reverse('conrad:how_to') + '?next={}'.format(reverse('conrad:local', args = [population])) + '&newpop=True')
 	else:
 		currentpop = Artist.objects.filter(seen=False, population=population, user=username, global_pop=False)
 		if not currentpop:
@@ -254,9 +266,17 @@ def global_game(request, population):
 		request.session.guest = True
 		request.session.save()
 		request.session.modified = True
+
+	if not Artist.objects.filter(user=username):
+		if 'howto' not in request.session:
+			request.session['howto'] = True
+			return HttpResponseRedirect(reverse('conrad:how_to') + '?next={}'.format(reverse('conrad:global_game', args = [0])))
 	try:
 		artists = request.POST.getlist('artist[]')
-		scores = request.POST.getlist('score[]')
+		scores = []
+		for i in range(1,6):
+			scores.append(request.POST.get('score[{}]'.format(i)))
+		print(scores)
 
 	except (KeyError, Artist.DoesNotExist):
 		pass
@@ -327,7 +347,7 @@ def gallery(request, sort, time, group, index):
 	else:
 		filtered = time_filtered.filter(user=group)
 
-	filtered = filtered.filter(seen__gte=0)
+	filtered = filtered.filter(seen__gte=1)
 
 	if sort == 'top':
 		top_images = filtered.order_by('-gallery_fitness')
@@ -347,6 +367,8 @@ def gallery(request, sort, time, group, index):
 	else:
 		pindex = index - 10
 
+	lindex = (len(filtered) // 10) * 10
+
 	nindex = index + 10
 
 	for i in top_images:
@@ -359,7 +381,7 @@ def gallery(request, sort, time, group, index):
 
 	voted = [i+1 for i in range(len(top_images)) if top_images[i].voters.values().filter(username=request.user.username).count()]
 	context = {'top_images': top_images, 'sort':sort, 'time':time, 'group':group,
-				'index':index, 'nindex':nindex, 'pindex':pindex, 'voted':voted}
+				'index':index, 'nindex':nindex, 'pindex':pindex, 'lindex':lindex, 'voted':voted}
 
 	return render(request, 'conrad/gallery.html', context)
 
@@ -439,6 +461,9 @@ def sandbox(request):
 		if re.search('[^ATCG]', genome1):
 			error_message = "Genomes can only contain 'A's, 'T's, 'C's, and 'G's."
 			return render(request, 'conrad/sandbox.html', {'image1':'', 'function1':'', 'error_message':error_message})
+		if len(genome1) < 30 or len(genome1) > 90:
+			error_message = "Genomes must be between 30 and 90 characters"
+			return render(request, 'conrad/sandbox.html', {'image1':'', 'function1':'', 'error_message':error_message})
 		else:
 			image1 = 'media/' + genome1 + '.png'
 			if not storage_utils.check_exists(genome1 + 'png'):
@@ -453,6 +478,9 @@ def sandbox(request):
 					error_message = "Genomes can only contain 'A's, 'T's, 'C's, and 'G's."
 					return render(request, 'conrad/sandbox.html',
 								  {'error_message': error_message})
+				if len(genome1) < 30 or len(genome1) > 90:
+					error_message = "Genomes must be between 30 and 90 characters"
+					return render(request, 'conrad/sandbox.html', {'image1':'', 'function1':'', 'error_message':error_message})
 				else:
 					image2 = 'media/' + genome2 + '.png'
 					if not storage_utils.check_exists(genome2 + 'png'):

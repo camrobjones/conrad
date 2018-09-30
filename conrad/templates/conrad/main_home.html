@@ -5,17 +5,32 @@
 
 {% load static %}
 
+<style>
 
+{% if is_mobile %}
+h2 a {
+	text-decoration: none
+}
+{% endif %}
+
+
+</style>
+
+
+
+
+
+<div class ="flex-wrap-container">
 <div class="home-main-container">
 <h2><a href = "{% url 'conrad:home' %}">Conrad</a></h2><br/>
 
 <div class="home-container">
-	<img src="{% static 'conrad/home1.png' %}" alt="Conrad Genetic Art Algorithm" height="300" width="300"/></label>
+	<a href = "{% url 'conrad:local' 0 %}"><img src="{% static 'conrad/home1.png' %}" alt="Conrad Genetic Art Algorithm" height="300" width="300"/></label></a>
 
 	<div class = "home-p">
-		<h3><a href = "{% url 'conrad:home' %}">Genetic Art</a></h3>
+		<h3><a href = "{% url 'conrad:local' 0 %}">Evolve your own Genetic Art</a></h3>
 		<p> 
-		Conrad is a genetic algorithm which generates art. Create your own personal population of images using Conrad, join the Global Conrad population, or view the best creations in the Gallery.</p>
+		Conrad is a genetic algorithm which generates art. <a href = "{% url 'conrad:local' 0 %}">Create</a> your own personal population of images using Conrad, join the <a href = "{% url 'conrad:globalhome' %}">Global</a> Conrad population, or view the best creations in the <a href = "{% url 'conrad:gallery' 'best' 'alltime' 'all' '0'%}">Gallery</a>.</p>
 	</div>
 </div>
 </div>
@@ -25,7 +40,7 @@
 <h2><a href = "{% url 'about' %}">About</a></h2><br/>
 
 <div class="home-container">
-	<img src="{% static 'conrad/home2.png' %}" alt="Genetic-Algorithms.com" height="300" width="300"/></label>
+	<a href = "{% url 'about' %}"><img src="{% static 'conrad/home2.png' %}" alt="Genetic-Algorithms.com" height="300" width="300"/></a>
 
 	<div class = "home-p">
 		<h3><a href = "{% url 'about' %}">What are Genetic Algorithms?</a></h3>
@@ -33,6 +48,7 @@
 		Genetic Algorithms are a form of machine learning inspired by natural selection.</p>
 		<p>genetic-algorithms.com is dedicated to creating interactive Genetic Algorithms to help users understand how they work.</p>
 	</div>
+</div>
 </div>
 </div>
 
