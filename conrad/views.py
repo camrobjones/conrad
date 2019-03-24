@@ -7,7 +7,7 @@ from django.shortcuts import render
 import conrad.GA as GA
 import conrad.image as image
 import conrad.conrad_utils as conrad_utils
-import EDS.storage_utils as storage_utils
+import ga.storage_utils as storage_utils
 import datetime
 from django.utils import timezone
 from django.http import HttpResponse
@@ -135,7 +135,7 @@ def signup(request):
     else:
         form = SignUpForm()
         form.fields['password1'].help_text = 'Must contain at least 8 characters.'
-    return render(request, 'EDS/signup.html', {'form': form})
+    return render(request, 'registration/signup.html', {'form': form})
 
 
 

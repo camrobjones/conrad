@@ -1,6 +1,6 @@
 import io
 import boto
-import EDS.settings as settings
+from django.conf import settings
 def upload(pil_image, s3name):
     in_mem_file = io.BytesIO()
     pil_image.save(in_mem_file, format='PNG')

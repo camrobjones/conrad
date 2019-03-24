@@ -2,12 +2,12 @@ import conrad.GA as GA
 import conrad.image as image
 from conrad.models import Artist
 import io
-import EDS.settings as settings
+from django.conf import settings
 import boto
 from background_task import background
-import EDS.tasks as tasks
+import ga.tasks as tasks
 import random
-import EDS.storage_utils as storage_utils
+import ga.storage_utils as storage_utils
 import stringdist
 
 def newpop(popsize, genlength, pop, user):
