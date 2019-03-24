@@ -1,7 +1,7 @@
 media/*
 *.pyc
 *~
-EDS/settings.py
+ga/settings.py
 db.sqlite3
 .DS_store
 *.log
