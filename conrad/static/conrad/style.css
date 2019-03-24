@@ -204,9 +204,10 @@ body {
 	
 .main-menu a {
 	color: white;
-	margin: 16px;
+	margin: 0;
 	font-size: 20px;
 	font-family: "Helvetica", sans-serif;
+	white-space: nowrap;
 }
 
 .main-menu {
@@ -228,17 +229,19 @@ body {
 }
 
 .dropdown-content {
+	list-style: none;
 	display: none;
 	position: absolute;
 	background-color: #3d3c3c;
-	z-index: 1;
+	/*z-index: 1;*/
 	padding: 2px;
 	margin-top: 15px;
 	margin-left: -18px;
 }
 
 .nav-element:hover .dropdown-content {
-	display: inline;
+	/*display: inline;*/
+	display:block;
 }
 
 .dropdown-element {
@@ -246,6 +249,8 @@ body {
 	padding: 15px;
 	margin: none;
 	border: 1px solid #3d3c3c;
+	display:block;
+	/*position:relative;*/
 }
 	
 .dropdown-element a {
@@ -344,10 +349,13 @@ h3 a {
 
 	
 .nav-element {
-	display: block;
-	float: left;
+	display: inline-block;
+	/*float: left;*/
+	position:relative;
 	background-color: #282828;
 	padding: 15px;
+	min-width:100px;
+	text-align:center;
 }
 
 .nav-element:hover {

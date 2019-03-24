@@ -2,3 +2,8 @@ media/*
 *.pyc
 *~
 EDS/settings.py
+manage.py
+db.sqlite3
+.DS_store
+*.log
+*/.DS_store

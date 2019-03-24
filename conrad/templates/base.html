@@ -28,66 +28,65 @@
 			<img src = "{% static 'conrad/header.png' %}" alt = 'header' style="min-width:1000px; height:140px;">
 			<div class = "header-text"><h1>genetic-algorithms.com</h1></div>
 		</div>
-		<nav class ="main-menu"> 
-			<div class="nav-element">
-				<a href = '/'>Home</a>
-			</div>
-			<div class="nav-element">
-				<a href = '/about'>About</a>
-			</div>
-			<div class="nav-element">
-				<a href = '/conrad/'>Conrad</a>
-				<div class="dropdown-content" 
-				{% if not is_mobile %} style = 'margin-left: -69px;'
-				{% endif %}>
-					<div class="dropdown-element">
-						<a href = '/conrad/about'>About Conrad</a>
+		<nav class ="main-menu">
+			<ul style = 'margin:0; text-align:left; {% if is_mobile %} display:flex; {% endif %}'>
+				<li class="nav-element">
+					<a href = '/'>Home</a>
+				</li>
+				<li class="nav-element">
+					<a href = '/about'>About</a>
+				</li>
+				<li class="nav-element">
+					<a href = '/conrad/'>Conrad</a>
+					<ul class="dropdown-content" >
+						<li class="dropdown-element">
+							<a href = '/conrad/about'>About Conrad</a>
+						</li>
+						<li class="dropdown-element">
+							<a href = '/conrad/local/'>Local Population</a>
+						</li>
+						<li class="dropdown-element">
+							<a href = '/conrad/global/'>Global Population</a>
+						</li>
+						<li class="dropdown-element">
+							<a href = '/conrad/gallery/best/alltime/all/0/'>Gallery</a>
+						</li>
+					</ul>
+				</li>
+
+				<li class="nav-element">
+					<a href = '/conrad/learn/'>Learn</a>
+					<ul class="dropdown-content" div class="dropdown-content">
+						<li class="dropdown-element">
+							<a href = '/conrad/sandbox'>Conrad Sandbox</a>
+						</li>
+						<li class="dropdown-element">
+							<a href = '/conrad/resources/'>Resources</a>
+						</li>
+						<li class="dropdown-element">
+							<a href = '/conrad/data/'>Data</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-element">
+					<a href = '/conrad/contact/'>Contact</a>
+				</li>
+				<li class="nav-element-login">{% if request.user.is_authenticated %}
+					<div class = "nav-login-container">
+					<table class = "login-table">
+						<tr><td><a href = '/accounts/profile'>{{request.user}}</a></td></tr>
+						{% if request.session.guest %}
+						<tr><td><a href = '/accounts/login'>Login</a></td></tr>
+						{% else %}
+						<tr><td><a href = '/accounts/logout'>logout</a></td></tr>
+						{% endif %}
+					</table>
 					</div>
-					<div class="dropdown-element">
-						<a href = '/conrad/local/'>Local Population</a>
-					</div>
-					<div class="dropdown-element">
-						<a href = '/conrad/global/'>Global Population</a>
-					</div>
-					<div class="dropdown-element">
-						<a href = '/conrad/gallery/best/alltime/all/0/'>Gallery</a>
-					</div>
-				</div>
-			</div>
-			<div class="nav-element">
-				<a href = '/conrad/learn/'>Learn</a>
-				<div class="dropdown-content" div class="dropdown-content" 
-				{% if not is_mobile %} style = 'margin-left: -62px;'
-				{% endif %}>
-					<div class="dropdown-element">
-						<a href = '/conrad/sandbox'>Conrad Sandbox</a>
-					</div>
-					<div class="dropdown-element">
-						<a href = '/conrad/resources/'>Resources</a>
-					</div>
-					<div class="dropdown-element">
-						<a href = '/conrad/data/'>Data</a>
-					</div>
-				</div>
-			</div>
-			<div class="nav-element">
-				<a href = '/conrad/contact/'>Contact</a>
-			</div>
-			<div class="nav-element-login">{% if request.user.is_authenticated %}
-				<div class = "nav-login-container">
-				<table class = "login-table">
-					<tr><td><a href = '/accounts/profile'>{{request.user}}</a></td></tr>
-					{% if request.session.guest %}
-					<tr><td><a href = '/accounts/login'>Login</a></td></tr>
-					{% else %}
-					<tr><td><a href = '/accounts/logout'>logout</a></td></tr>
-					{% endif %}
-				</table>
-				</div>
-			{% else %}
-				<a href = '/accounts/login'>login</a>
-			{% endif %}
-			</div>
+				{% else %}
+					<a href = '/accounts/login'>login</a>
+				{% endif %}
+				</li>
+			</ul>
 		</nav>
 		<link rel="stylesheet" type = "text/css" href = "{% static 'conrad/style.css' %}" />
 		{% if is_mobile %}
