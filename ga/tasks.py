@@ -4,6 +4,7 @@ import io
 import ga.settings as settings
 import boto
 from background_task import background
+from ga import storage_utils
 import logging
 
 logger = logging.getLogger('background_task')
@@ -23,6 +24,6 @@ def generate_image(artist_id):
     if i.image == '':
         im = GA.display(i.genome)
         out = "{}.PNG".format(i)
-        im.save('media/'+out)
+        storage_utils.upload(im, 'media/'+out)
         i.image = out
         i.save()
