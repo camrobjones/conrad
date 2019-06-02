@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth.models import User
+from django.conf import settings
+from general.models import User
 import conrad.image as image
 
 # Create your models here.
@@ -26,8 +27,8 @@ class Artist(models.Model):
 	last_active = models.DateTimeField(auto_now=True)
 	father = models.ManyToManyField('self', default=None)
 	mother = models.ManyToManyField('self', default=None)
-	voters = models.ManyToManyField(User, default=None)
-	gallery_voters = models.ManyToManyField(User, related_name='+', default=None)
+	voters = models.ManyToManyField(settings.AUTH_USER_MODEL, default=None)
+	gallery_voters = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='+', default=None)
 	alive = models.BooleanField(default=True)
 	global_pop = models.BooleanField(default=False)
 	def __str__(self):

@@ -21,7 +21,7 @@ import math
 
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.contrib.auth import views as auth_views
 
 from django.contrib.auth import login, authenticate
@@ -37,7 +37,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
 from django.utils.translation import ugettext as _
 
-
+from general.models import User
 
 def home(request):
 	userlist = list(set([p.user for p in  Artist.objects.all()]))

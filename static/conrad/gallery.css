@@ -1,0 +1,16 @@
+
+	
+.nav-element {
+	display: block;
+	float: left;
+	background-color: #282828;
+	padding: 15px;
+}
+
+.nav-element:hover {
+	background-color: #45a83c;
+}
+
+nav a:hover {
+	background-color: #45a83c;
+}
