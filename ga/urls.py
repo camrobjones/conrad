@@ -21,6 +21,7 @@ from django.urls import include, path
 from django.conf import settings
 from lazysignup.views import convert
 
+from ga.views import AdsView
 from conrad import views
 
 urlpatterns = [
@@ -28,6 +29,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.main_home, name = 'home'),
     path('about/', views.about, name = 'about'),
+
+    path('ads.txt', AdsView.as_view()),
 
     path('accounts/login/',  auth_views.LoginView.as_view(
         template_name='registration/login.html'), name='login'),
