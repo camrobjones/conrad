@@ -1,6 +1,6 @@
 boto==2.49.0
 cycler==0.10.0
-Django==2.1.7
+Django==2.2.13
 django-background-tasks==1.2.0
 django-compat==1.0.15
 django-lazysignup==2.0.0
